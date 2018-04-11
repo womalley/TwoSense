@@ -1,0 +1,10 @@
+As a user, I would like a simple login page, so that I can easily login to my account.
+As a developer, I would like to utilize Firebase, so that I can easily create a database for user login information and safely store it.
+As a user, I would like a simple register page, so that I can create an account to join the web application.
+As a user, I would like a profile page, so that I can view my user stats.
+As a user, I would like a page for the top scores, so that I can compare the scores to mine and try and beat them.
+As a user, I would like to take the color blindness level test, so that I can calculated my color blind level.
+As a user, I would like to take the deafness level test, so that I can calculate my level of deafness.
+As a developer, I would like a simple page with imbedded images, so that the color blind test interface is clean and modern looking.
+As a developer, I would like a simple page with imbedded sound clips, so that the deafness test interface is clean and modern looking.
+As a developer, I would like to user Firebase to store user stats and information.
