@@ -10,6 +10,6 @@ It also tests your eyesight for colorblindness by providing simple visual tests.
 * Adhitya Vadivel - avadivel@purdue.edu
 
 # Technologies
-* Database - Firebase
+* Backend/Database - Firebase
 * Frontend - Javascript, Bootstrap, CSS, HTML5
-* Backend - Firebase
+* Hosting - GitHub Pages
