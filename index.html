@@ -23,17 +23,19 @@
         <div class="loginBox">
 
             <h1 class="signInHeader">Sign In</h1>
+            
+            <div class="textBoxInput">
+                <div class="inputTitle">EMAIL</div>
+                <input id="emailIn" type="text" placeholder="Email">
+                <div class="inputTitle">PASSWORD</div>
+                <input id="passwordIn" type="text" name="password" placeholder="Password">
+            </div>
 
-            <input id="emailIn" type="signInEmail" placeholder="Email">
+            <button id="loginButton" class="buttonSignInPage">SIGN IN</button>
 
-            <input id="passwordIn" type="signInPassword" placeholder="Password">
+            <button id="registerButton" class="buttonSignInPage">REGISTER</button>
 
-
-            <button id="loginButton" class="btn btn-action">LOG IN</button>
-
-            <button id="registerButton" class="">REGISTER</button>
-
-            <button id="logoutButton" class="">LOG OUT</button>
+            <button id="logoutButton" class="buttonSignInPage">LOG OUT</button>
         </div>
 
         <script src="./public/app.js"> </script>
