@@ -12,4 +12,4 @@ It also tests your eyesight for colorblindness by providing simple visual tests.
 # Technologies
 * Backend/Database - Node.js and Firebase
 * Frontend - Javascript, Bootstrap, CSS, HTML5
-* HOsting - GitHub Pages
+* Hosting - GitHub Pages
