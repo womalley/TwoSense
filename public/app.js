@@ -34,4 +34,6 @@ loginButton.addEventListener('click', e => {
     // sign in with email and password
     const loginAttempt = auth.signInWithEmailAndPassword(email, password); // login successful
     loginAttempt.catch(e => console.log(e.message)); // login failed (user credentials wrong or user does not exist)
+
+    // listener for checking if user
 });
