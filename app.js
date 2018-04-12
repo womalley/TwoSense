@@ -13,7 +13,7 @@
     messagingSenderId: "1043280577170"
   };
   firebase.initializeApp(config);
-
+/* End given code */
 
 /* Implementing elements for login (My code) */
 const emailIn = document.getElementById('emailIn');

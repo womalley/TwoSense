@@ -3,18 +3,32 @@
 
     <head>
 
+        <!-- Dependencies -->
+        <link href="login.css" rel="stylesheet">
+        <link href="app.js" rel="javascript">
+
     </head>
 
     <body>
 
+
+        <!-- Dependencies -->
+        <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+        <!-- background image -->
         <body background="./backgrounds/loginBackground.jpg"></body>
+
+        <!-- sign in box -->
         <div class="loginBox">
+
+            <h1 class="signInHeader">Sign In</h1>
 
             <input id="emailIn" type="signInEmail" placeholder="Email">
 
             <input id="passwordIn" type="signInPassword" placeholder="Password">
 
-            <button id="loginButton" class="">LOG IN</button>
+
+            <button id="loginButton" class="btn btn-action">LOG IN</button>
 
             <button id="registerButton" class="">REGISTER</button>
 
