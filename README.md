@@ -12,6 +12,6 @@ Access our site with this link: (https://womalley.github.io/TwoSense/)
 * Adhitya Vadivel - avadivel@purdue.edu
 
 # Technologies
-* Backend/Database - Firebase
+* Backend/Database - Node.js and Firebase
 * Frontend - Javascript, Bootstrap, CSS, HTML5
 * Hosting - GitHub Pages
