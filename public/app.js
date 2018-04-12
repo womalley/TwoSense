@@ -1,7 +1,6 @@
 
 
 /* Given from Amazon's Firebase to connect code to database (Not my code!) */
-<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 
 // Initialize Firebase
   var config = {
@@ -30,7 +29,7 @@ loginButton.addEventListener('click', e => {
     const password = passwordIn.value;
     
     // firebase auth
-    const auth = firevase.auth();
+    const auth = firebase.auth();
 
     // sign in with email and password
     const loginAttempt = auth.signInWithEmailAndPassword(email, password); // login successful
