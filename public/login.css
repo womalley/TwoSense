@@ -1,5 +1,5 @@
 .loginBox {
-    width: 370px;
+    width: 570px;
     height: 450px;
     background: rgba(0, 0, 0, 0.38);
     color: #fff;
@@ -76,4 +76,12 @@
 .buttonSignInPage:hover {
     background-color: white;
     color: rgb(110, 110, 110);
+}
+
+.twoSenseTitle {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 160px;
+    color: slategray;
+    margin: auto;
+    text-align: center;
 }

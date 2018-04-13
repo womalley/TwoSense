@@ -54,4 +54,17 @@ registerButton.addEventListener('click', e => {
     console.log(e.message);
     alert("The email you entered is already registered or does not exist.");
   });
+
+  // log user information
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+
+    if (firebaseUser) {
+      console.log(firebaseUser);
+      console.log("User is logged in!");
+    }
+    else {
+      console.log("User is not logged in!");
+    }
+  });
+
 });
