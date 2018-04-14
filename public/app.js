@@ -10,12 +10,24 @@ function loginButtonCheck() {
     // sign in with email and password
     const loginAttempt = firebase.auth().signInWithEmailAndPassword(email, password); // login successful
     loginAttempt.catch(e => {
-      alert("The email you entered does not belong to an account. Please check your email and password.");
       window.location.replace("");
     });
 
-    //window.location.replace("home.html");
-}
+      // log user information
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+
+      if (firebaseUser) {
+        console.log(firebaseUser);
+        window.location.replace("home.html");
+        console.log("User is logged in!");
+      }
+      else {
+        console.log("User is not logged in!");
+        //alert("The email you entered does not belong to an account. Please check your email and password.");
+      }
+
+    });
+  }  
 
 function registerButtonCheck() {
 
@@ -40,7 +52,7 @@ function registerButtonCheck() {
 
     if (firebaseUser) {
       console.log(firebaseUser);
-      window.location.replace("home.html");
+      //window.location.replace("home.html");
       console.log("User is logged in!");
     }
     else {
@@ -52,4 +64,15 @@ function registerButtonCheck() {
 function logout() {
   firebase.auth().signOut();
   window.location.replace("index.html");
+}
+
+function checkLoggedIn() {
+  if (firebaseUser) {
+    console.log(firebaseUser);
+    window.location.replace("home.html");
+    console.log("User is logged in!");
+  }
+  else {
+    console.log("User is not logged in!");
+  }
 }
