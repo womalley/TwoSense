@@ -5,7 +5,6 @@
 
     <!-- Dependencies -->
     <link href="./public/login.css" rel="stylesheet">
-    <link href="./public/home.css" rel="stylesheet">
     <link href="./public/navBar.css" rel="stylesheet">
     <link href="./public/app.js" rel="javascript">
     <link href="./public/404.html" rel="html">
@@ -22,11 +21,12 @@
         <button class="sidNavBottomButton" onclick="logout()">LOGOUT</button>
     </div>
 
-    <!-- home page content -->
+    <!-- Color-blindness test page content -->
     <div class="pageStyles">
-        <h1>Welcome to TwoSense!</h1>
+        <h1>COLOR-BLINDNESS TEST PAGE!</h1>
     </div>
 
+    <!-- Given by Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -39,8 +39,10 @@
             messagingSenderId: "1043280577170"
         };
         firebase.initializeApp(config);
-        /* End given code */
+        
     </script>
+    <!-- End given code by Firebase -->
+    
     <script src="./public/app.js"> </script>
 
 </body>

@@ -1,40 +1,40 @@
-[debug] [2018-04-14T22:38:51.714Z] ----------------------------------------------------------------------
-[debug] [2018-04-14T22:38:51.723Z] Command:       /home/chrx/.nvm/versions/node/v6.11.5/bin/node /home/chrx/.nvm/versions/node/v6.11.5/bin/firebase serve
-[debug] [2018-04-14T22:38:51.725Z] CLI Version:   3.17.7
-[debug] [2018-04-14T22:38:51.725Z] Platform:      linux
-[debug] [2018-04-14T22:38:51.725Z] Node Version:  v6.11.5
-[debug] [2018-04-14T22:38:51.725Z] Time:          Sat Apr 14 2018 18:38:51 GMT-0400 (EDT)
-[debug] [2018-04-14T22:38:51.726Z] ----------------------------------------------------------------------
+[debug] [2018-04-16T03:05:58.804Z] ----------------------------------------------------------------------
+[debug] [2018-04-16T03:05:58.813Z] Command:       /home/chrx/.nvm/versions/node/v6.11.5/bin/node /home/chrx/.nvm/versions/node/v6.11.5/bin/firebase serve
+[debug] [2018-04-16T03:05:58.815Z] CLI Version:   3.17.7
+[debug] [2018-04-16T03:05:58.815Z] Platform:      linux
+[debug] [2018-04-16T03:05:58.815Z] Node Version:  v6.11.5
+[debug] [2018-04-16T03:05:58.816Z] Time:          Sun Apr 15 2018 23:05:58 GMT-0400 (EDT)
+[debug] [2018-04-16T03:05:58.816Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-04-14T22:38:51.763Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-04-14T22:38:51.763Z] > authorizing via signed-in user
-[debug] [2018-04-14T22:38:51.771Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-04-14T22:38:51.772Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-04-16T03:05:58.861Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-16T03:05:58.861Z] > authorizing via signed-in user
+[debug] [2018-04-16T03:05:58.869Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-04-16T03:05:58.870Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  { refresh_token: '1/Wbf-adIuDQnQ6VlhIQ7Hz3Zqg5fsCj-Rs2qVgeF26Yg',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Sat Apr 14 2018 18:38:51 GMT-0400 (EDT)
-[debug] [2018-04-14T22:38:52.034Z] <<< HTTP RESPONSE 200
-[debug] [2018-04-14T22:38:52.077Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/twosense-66771  
+ Sun Apr 15 2018 23:05:58 GMT-0400 (EDT)
+[debug] [2018-04-16T03:05:59.313Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-16T03:05:59.327Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/twosense-66771  
   
- Sat Apr 14 2018 18:38:52 GMT-0400 (EDT)
-[debug] [2018-04-14T22:38:52.412Z] <<< HTTP RESPONSE 200
-[debug] [2018-04-14T22:38:52.416Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/twosense-66771/tokens  
+ Sun Apr 15 2018 23:05:59 GMT-0400 (EDT)
+[debug] [2018-04-16T03:05:59.777Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-16T03:05:59.783Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/twosense-66771/tokens  
   
- Sat Apr 14 2018 18:38:52 GMT-0400 (EDT)
-[debug] [2018-04-14T22:38:52.725Z] <<< HTTP RESPONSE 200
-[debug] [2018-04-14T22:38:52.732Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/twosense-66771  
+ Sun Apr 15 2018 23:05:59 GMT-0400 (EDT)
+[debug] [2018-04-16T03:06:00.188Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-16T03:06:00.193Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/twosense-66771  
   
- Sat Apr 14 2018 18:38:52 GMT-0400 (EDT)
-[debug] [2018-04-14T22:38:52.975Z] <<< HTTP RESPONSE 200
+ Sun Apr 15 2018 23:06:00 GMT-0400 (EDT)
+[debug] [2018-04-16T03:06:00.427Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/home/chrx/TwoSense'...
 [info] 
-[debug] [2018-04-14T22:38:52.988Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1043280577170/clients/_:getWebAppConfig  
+[debug] [2018-04-16T03:06:00.441Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1043280577170/clients/_:getWebAppConfig  
   
- Sat Apr 14 2018 18:38:52 GMT-0400 (EDT)
-[debug] [2018-04-14T22:38:53.345Z] <<< HTTP RESPONSE 200
+ Sun Apr 15 2018 23:06:00 GMT-0400 (EDT)
+[debug] [2018-04-16T03:06:00.783Z] <<< HTTP RESPONSE 200
 [info] ✔  hosting: Local server: http://localhost:5000
 

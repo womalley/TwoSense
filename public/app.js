@@ -61,6 +61,22 @@ function registerButtonCheck() {
   });
 
 
+function profileRedirect() {
+  window.location.replace("profile.html");
+}
+
+function colorTestRedirect() {
+  window.location.replace("colorTest.html");
+}
+
+function hearingTestRedirect() {
+  window.location.replace("hearingTest.html");
+}
+
+function topScoresRedirect() {
+  window.location.replace("topScores.html");
+}
+
 function logout() {
   firebase.auth().signOut();
   window.location.replace("index.html");
