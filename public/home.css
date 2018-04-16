@@ -1,0 +1,64 @@
+.twoSenseLandingTitle {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3.25vw;
+    color: slategray;
+    margin: auto;
+    text-align: center;
+}
+
+.landingSummaryText {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 0.75vw;
+    color: slategray;
+    margin: auto;
+    text-align: center;
+}
+
+.landingButtons {
+    padding: 1.0vw 1.0vw 1.0vw 1.0vw;
+    background-color: rgba(0, 0, 0, 0.38);
+    background-repeat:no-repeat;
+    border: 2px solid white;
+    border-color: white;
+    color: white;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    width: 10vw;
+    font-size: 1vw;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    margin-bottom: 2%;
+
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.4s;
+}
+
+.landingButtons:hover {
+    background-color: white;
+    border-color: rgba(0, 0, 0, 0.38);
+    color: rgb(110, 110, 110);
+}
+
+.hearingButtonLoc {
+    position: absolute;
+    top: 50%;
+    left: 37.5%;
+}
+
+.colorButtonLoc {
+    position: absolute;
+    top: 50%;
+    left: 52.5%;
+}
+
+.profileButtonLoc {
+    position: absolute;
+    top: 60%;
+    left: 37.5%;
+}
+
+.logoutButtonLoc {
+    position: absolute;
+    top: 60%;
+    left: 52.5%;
+}
