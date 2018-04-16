@@ -6,25 +6,41 @@
     <!-- Dependencies -->
     <link href="./public/login.css" rel="stylesheet">
     <link href="./public/home.css" rel="stylesheet">
-    <link href="./public/navBar.css" rel="stylesheet">
     <link href="./public/app.js" rel="javascript">
     <link href="./public/404.html" rel="html">
 </head>
 
 <body>
 
-    <!-- Sidebar navigation -->
-    <div class="sideNav">
-        <button class="sidNavButton" onclick="profileRedirect()">Profile</button>
-        <button class="sidNavButton" onclick="colorTestRedirect()">Color-blindness Test</button>
-        <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Age Test</button>
-        <button class="sidNavButton" onclick="topScoresRedirect()">Top 10 records</button>
-        <button class="sidNavBottomButton" onclick="logout()">LOGOUT</button>
+    <!-- home page title and summary -->
+    <div class="twoSenseLandingTitle">
+        <h1>TwoSense</h1>
     </div>
 
-    <!-- home page content -->
-    <div class="pageStyles">
-        <h1>Welcome to TwoSense!</h1>
+    <div class="landingSummaryText">
+        <h1>Welcome to TwoSense: As we get older our ability to hear high pitched sounds decreases. <br>
+        The younger you are the higher the frequency you can hear. TwoSense is a web <br>
+        application that rates your hearing and tells you your hearing age. It also tests <br>
+        your eyesight for colorblindness by providing simple visual tests.</h1>
+    </div>
+
+    <!-- Menu navigation -->
+    <div class="profileButtonLoc">
+        <button class="landingButtons" onclick="profileRedirect()">My Profile</button>
+    </div>
+
+    <div class="colorButtonLoc">
+        <button class="landingButtons" onclick="colorTestRedirect()">Color-blind Test</button>
+    </div>
+
+    <div class="hearingButtonLoc">
+        <button class="landingButtons" onclick="hearingTestRedirect()">Hearing Age Test</button>
+    </div>
+
+    <!-- <button class="landingButtons" onclick="topScoresRedirect()">Leaderboard</button> -->
+    
+    <div class="logoutButtonLoc">
+        <button class="landingButtons" onclick="logout()">LOGOUT</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
