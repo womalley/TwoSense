@@ -6,15 +6,12 @@
     <!-- Dependencies -->
     <link href="./public/login.css" rel="stylesheet" />
     <link href="./public/navBar.css" rel="stylesheet" />
+    <link href="./public/hearingTest.css" rel="stylesheet" />
     <link href="./public/app.js" rel="javascript" />
     <link href="./public/404.html" rel="html" />
 </head>
 
 <body>
-
-<div id="quiz"></div>
-<button id="submit">Submit Quiz</button>
-<div id="results"></div>
 
     <!-- Sidebar navigation -->
     <div class="sideNav">
@@ -27,8 +24,19 @@
 
     <!-- hearing test page content -->
     <div class="pageStyles">
-        <h1>HEARING TEST PAGE!</h1>
+        <h1>TwoSense Hearing Test</h1>
     </div>
+
+    <h3>Click on the most appropriate choice</h3>
+    <div class="quiz-container">
+        <div id="quiz">
+                <script src="hearingTest.js"></script>
+        </div>
+    </div>
+    <button id="previous">Previous Question</button>
+    <button id="next">Next Question</button>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
 
     <!-- Given by Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
