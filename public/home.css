@@ -69,3 +69,10 @@
     top: 60%;
     left: 52.5%;
 }
+
+.backGroundLogo {
+    background-image: url("./backgrounds/twoSenseLogo.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20vh;
+    background-size: 10%;
+}

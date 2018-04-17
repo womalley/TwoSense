@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "twosense-66771"
+    "default": "twosense-66771",
+    "twosense": "twosense-66771"
   }
 }

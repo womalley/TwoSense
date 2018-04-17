@@ -1,4 +1,5 @@
 
+/* -------------------------- LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
 
 /* Create login on click event */
 function loginButtonCheck() {
@@ -92,3 +93,75 @@ function checkLoggedIn() {
     console.log("User is not logged in!");
   }
 }
+
+/* -------------------------- END LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
+
+
+/* -------------------------- COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
+
+var questionNum = 0;
+var correctAns = 0;
+
+var question = [
+    ["./Tests/Colorblindness/1.png", '-1'],
+    ["./Tests/Colorblindness/2.0.png", '2'],
+    ["./Tests/Colorblindness/2.1.png", '2'],
+    ["./Tests/Colorblindness/3.1.png", '3'],
+    ["./Tests/Colorblindness/3.png", '3'],
+    ["./Tests/Colorblindness/4.png", '4'],
+    ["./Tests/Colorblindness/5.0.png", '5'],
+    ["./Tests/Colorblindness/5.1.png", '5'],
+    ["./Tests/Colorblindness/5.2.png", '5'],
+    ["./Tests/Colorblindness/5.png", '5'],
+    ["./Tests/Colorblindness/6.1.png", '6'],
+    ["./Tests/Colorblindness/6.png", '6'],
+    ["./Tests/Colorblindness/7.1.png", '7'],
+    ["./Tests/Colorblindness/7.2.png", '7'],
+    ["./Tests/Colorblindness/7.3.png", '7'],
+    ["./Tests/Colorblindness/7.png", '7'],
+    ["./Tests/Colorblindness/8.png", '8'],
+    ["./Tests/Colorblindness/9.1.png", '9'],
+    ["./Tests/Colorblindness/9.2.png", '9'],
+    ["./Tests/Colorblindness/9.3.png", '9'],
+    ["./Tests/Colorblindness/9.png", '9']
+];
+
+function nextQuestion(response) {
+    if ((questionNum < (question.length)) && (response == question[questionNum][1])) {
+        // answer is correct
+        correct++;
+    }
+
+    // TODO: add progress bar
+
+    console.log("questionNum: " + questionNum);
+
+    questionNum++;
+    // make sure test has not reached the end
+    if (questionNum < (question.length)) {
+        document.getElementById('colorImg').src = question[questionNum][0];
+        console.log("Next color blind test check");
+    }
+    else {
+      // exit test
+      console.log("Test is over");
+
+      //compare answer key array with user input array
+
+      //go to page for showing users score?
+      //window.location.replace("topScores.html");
+
+      // reset counter
+      questionNum = 0;
+    }  
+
+    onload = function() {
+        document.getElementById('colorImg').src = question[0][0];
+    }
+
+}
+ 
+
+/* -------------------------- END COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
+
+
