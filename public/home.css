@@ -6,6 +6,13 @@
     text-align: center;
 }
 
+.appLogo {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
 .landingSummaryText {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 0.75vw;
