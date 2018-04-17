@@ -146,12 +146,14 @@ function nextQuestion(response) {
       // exit test
       console.log("Test is over");
 
+      //compare answer key array with user input array
+
       //go to page for showing users score?
       //window.location.replace("topScores.html");
 
       // reset counter
       questionNum = 0;
-    }
+    }  
 
     onload = function() {
         document.getElementById('colorImg').src = question[0][0];
