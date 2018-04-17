@@ -6,6 +6,7 @@
     <!-- Dependencies -->
     <link type="text/css" rel="stylesheet" href="./public/hearingTest.css" />
     <link href="./public/navBar.css" rel="stylesheet" />
+    <link href="./public/hearingTest.css" rel="stylesheet" />
     <link href="./public/app.js" rel="javascript" />
     <link href="./public/404.html" rel="html" />
 </head>
@@ -17,14 +18,26 @@
         <button class="sidNavButton" onclick="profileRedirect()">Profile</button>
         <button class="sidNavButton" onclick="colorTestRedirect()">Color-blindness Test</button>
         <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Age Test</button>
+        <button class="sidNavButton" onclick="topScoresRedirect()">Top 10 records</button>
         <button class="sidNavButton" onclick="topScoresRedirect()">Leaderboard</button>
-        <button class="sidNavBottomButton" onclick="logout()">LOGOUT</button>
+        <button class="sidNavBottomButton" onclick="logout()">Logout</button>
     </div>
 
     <!-- hearing test page content -->
     <div class="pageStyles">
-        <h1>HEARING TEST PAGE!</h1>
+        <h1>TwoSense Hearing Test</h1>
     </div>
+
+    <h3>Click on the most appropriate choice</h3>
+    <div class="quiz-container">
+        <div id="quiz">
+                <script src="hearingTest.js"></script>
+        </div>
+    </div>
+    <button id="previous">Previous Question</button>
+    <button id="next">Next Question</button>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
 
     <!-- Given by Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
