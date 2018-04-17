@@ -4,7 +4,7 @@
 <head>
 
     <!-- Dependencies -->
-    <link href="./public/login.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="./public/colorTest.css" />
     <link href="./public/navBar.css" rel="stylesheet" />
     <link href="./public/app.js" rel="javascript" />
     <link href="./public/404.html" rel="html" />
@@ -17,13 +17,24 @@
         <button class="sidNavButton" onclick="profileRedirect()">Profile</button>
         <button class="sidNavButton" onclick="colorTestRedirect()">Color-blindness Test</button>
         <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Age Test</button>
-        <button class="sidNavButton" onclick="topScoresRedirect()">Top 10 records</button>
+        <button class="sidNavButton" onclick="topScoresRedirect()">Leaderboard</button>
         <button class="sidNavBottomButton" onclick="logout()">LOGOUT</button>
     </div>
 
     <!-- Color-blindness test page content -->
     <div class="pageStyles">
-        <h1>COLOR-BLINDNESS TEST PAGE!</h1>
+        <div class="colorTestBox">
+            <!-- heading -->
+            <h1>COLOR-BLINDNESS TEST</h1>
+            <div class="pageStyle">
+                <img src="./Tests/Colorblindness/1.png" id="colorImg" />
+                <input id="userAnswerIn" type="text" placeholder="Answer">
+
+                <button onclick="nextQuestion()">NEXT</button>
+            </div>
+
+        </div>
+
     </div>
 
     <!-- Given by Firebase -->
@@ -39,10 +50,10 @@
             messagingSenderId: "1043280577170"
         };
         firebase.initializeApp(config);
-        
+
     </script>
     <!-- End given code by Firebase -->
-    
+
     <script src="./public/app.js"> </script>
 
 </body>
