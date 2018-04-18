@@ -4,38 +4,38 @@
 /* Create login on click event */
 function loginButtonCheck() {
 
-    // grab user inputs from login page
-    const email = document.getElementById("emailIn").value;
-    const password = document.getElementById("passwordIn").value;
+  // grab user inputs from login page
+  const email = document.getElementById("emailIn").value;
+  const password = document.getElementById("passwordIn").value;
 
-    // sign in with email and password
-    const loginAttempt = firebase.auth().signInWithEmailAndPassword(email, password); // login successful
-    loginAttempt.catch(e => {
-      window.location.replace("");
-    });
+  // sign in with email and password
+  const loginAttempt = firebase.auth().signInWithEmailAndPassword(email, password); // login successful
+  loginAttempt.catch(e => {
+    window.location.replace("");
+  });
 
-      // log user information
-    firebase.auth().onAuthStateChanged(firebaseUser => {
+  // log user information
+  firebase.auth().onAuthStateChanged(firebaseUser => {
 
-      if (firebaseUser) {
-        console.log(firebaseUser);
-        window.location.replace("home.html");
-        console.log("User is logged in!");
-      }
-      else {
-        console.log("User is not logged in!");
-        //alert("The email you entered does not belong to an account. Please check your email and password.");
-      }
+    if (firebaseUser) {
+      console.log(firebaseUser);
+      window.location.replace("home.html");
+      console.log("User is logged in!");
+    }
+    else {
+      console.log("User is not logged in!");
+      //alert("The email you entered does not belong to an account. Please check your email and password.");
+    }
 
-    });
-  }  
+  });
+}
 
 function registerButtonCheck() {
 
   // set email and password vars by user input
   const email = document.getElementById("emailIn").value;
   const password = document.getElementById("passwordIn").value;
-  
+
   // firebase auth
   const auth = firebase.auth();
 
@@ -48,18 +48,18 @@ function registerButtonCheck() {
   });
 }
 
-  // log user information
-  firebase.auth().onAuthStateChanged(firebaseUser => {
+// log user information
+firebase.auth().onAuthStateChanged(firebaseUser => {
 
-    if (firebaseUser) {
-      console.log(firebaseUser);
-      //window.location.replace("home.html");
-      console.log("User is logged in!");
-    }
-    else {
-      console.log("User is not logged in!");
-    }
-  });
+  if (firebaseUser) {
+    console.log(firebaseUser);
+    //window.location.replace("home.html");
+    console.log("User is logged in!");
+  }
+  else {
+    console.log("User is not logged in!");
+  }
+});
 
 
 function profileRedirect() {
@@ -103,30 +103,30 @@ var questionNum = 0;
 var correctAns = 0;
 
 var question = [
-    ["./Tests/Colorblindness/1.png", '-1'],
-    ["./Tests/Colorblindness/2.0.png", '2'],
-    ["./Tests/Colorblindness/2.1.png", '2'],
-    ["./Tests/Colorblindness/3.1.png", '3'],
-    ["./Tests/Colorblindness/3.png", '3'],
-    ["./Tests/Colorblindness/4.png", '4'],
-    ["./Tests/Colorblindness/5.0.png", '5'],
-    ["./Tests/Colorblindness/5.1.png", '5'],
-    ["./Tests/Colorblindness/5.2.png", '5'],
-    ["./Tests/Colorblindness/5.png", '5'],
-    ["./Tests/Colorblindness/6.1.png", '6'],
-    ["./Tests/Colorblindness/6.png", '6'],
-    ["./Tests/Colorblindness/7.1.png", '7'],
-    ["./Tests/Colorblindness/7.2.png", '7'],
-    ["./Tests/Colorblindness/7.3.png", '7'],
-    ["./Tests/Colorblindness/7.png", '7'],
-    ["./Tests/Colorblindness/8.png", '8'],
-    ["./Tests/Colorblindness/9.1.png", '9'],
-    ["./Tests/Colorblindness/9.2.png", '9'],
-    ["./Tests/Colorblindness/9.3.png", '9'],
-    ["./Tests/Colorblindness/9.png", '9']
+  ["./Tests/Colorblindness/1.png", 'none'],
+  ["./Tests/Colorblindness/2.0.png", '2'],
+  ["./Tests/Colorblindness/2.1.png", '2'],
+  ["./Tests/Colorblindness/3.1.png", '3'],
+  ["./Tests/Colorblindness/3.png", 'none'],
+  ["./Tests/Colorblindness/4.png", '4'],
+  ["./Tests/Colorblindness/5.0.png", '5'],
+  ["./Tests/Colorblindness/5.1.png", '5'],
+  ["./Tests/Colorblindness/5.2.png", '5'],
+  ["./Tests/Colorblindness/5.png", '5'],
+  ["./Tests/Colorblindness/6.1.png", '6'],
+  ["./Tests/Colorblindness/6.png", '6'],
+  ["./Tests/Colorblindness/7.1.png", '7'],
+  ["./Tests/Colorblindness/7.2.png", '7'],
+  ["./Tests/Colorblindness/7.3.png", '7'],
+  ["./Tests/Colorblindness/7.png", '7'],
+  ["./Tests/Colorblindness/8.png", '8'],
+  ["./Tests/Colorblindness/9.1.png", '9'],
+  ["./Tests/Colorblindness/9.2.png", '9'],
+  ["./Tests/Colorblindness/9.3.png", '9'],
+  ["./Tests/Colorblindness/9.png", '9']
 ];
 
-var colorAnsKey = [];
+var colorAnsKey = ['none', '2', '2', '3', 'none', '4', '5', '5', '5', '5', '6', '6', '7', '7', '7', '7', '8', '9', '9', '9', '9'];
 var colorAnsUser = [];
 var correct = 0;
 
@@ -139,44 +139,43 @@ function nextQuestion(response) {
   colorAnsUser.push(response);
   console.log("User answers: " + colorAnsUser);
 
-    if ((questionNum < (question.length)) && (response == question[questionNum][1])) {
-        // answer is correct
-        correct++;
-    }
+  if ((questionNum < (question.length)) && (response == question[questionNum][1])) {
+    // answer is correct
+    console.log("User's answer is correct!")
+    correct++;
+  }
 
-    // TODO: add progress bar
+  // TODO: add progress bar
 
-    console.log("questionNum: " + questionNum);
+  console.log("questionNum: " + questionNum);
 
-    questionNum++;
-    // make sure test has not reached the end
-    if (questionNum < (question.length)) {
-        document.getElementById('colorImg').src = question[questionNum][0];
-        console.log("Next color blind test check");
-
-    }
-    else {
-      // exit test
-      console.log("Test is over");
-
-      //compare answer key array with user input array
-
-      //go to page for showing users score?
-      //window.location.replace("topScores.html");
-
-      // reset counter
-      questionNum = 0;
-    }  
+  questionNum++;
+  // make sure test has not reached the end
+  if (questionNum < (question.length)) {
+    document.getElementById('colorImg').src = question[questionNum][0];
+    console.log("Next color blind test check");
 
     //reset input field after button click
     document.getElementById('userAnswerIn').value = '';
 
-    onload = function() {
-        document.getElementById('colorImg').src = question[0][0];
+    onload = function () {
+      document.getElementById('colorImg').src = question[0][0];
     }
+  }
+  else {
+    // exit test
+    console.log("Test is over");
+
+    //compare answer key array with user input array
+
+    window.location.replace('colorTestFinalScore.html')
+    questionNum = 0;
+    correct = 0;
+
+    //dispColorScore();
+  }
 
 }
- 
 
 /* -------------------------- END COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
 
