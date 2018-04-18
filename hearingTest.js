@@ -1,95 +1,46 @@
-(function() {
-  const myQuestions = [
-    {
-      question: "Can you hear this sound?",
-      answers: {
-        a: "Yes",
-        b: "No",
-      },
-    },
-    {
-      question: "How about this sound?",
-      answers: {
-        a: "Yes",
-        b: "No",
-      },
-    },
-    {
-      question: "But can you hear this sound?",
-      answers: {
-        a: "Yes",
-        b: "No",
-      },
+var soundNum = 0;
+var numTrue = 0;
+
+var sounds = [
+    ["./Tests/Hearing/100hz.mp3"],
+    ["./Tests/Hearing/500hz.mp3"],
+    ["./Tests/Hearing/5000hz.mp3"]
+];
+
+function nextSound(response) {
+    if (soundNum < (sounds.length)) {
+      if (response.toLowerCase() === "yes")
+        numTrue++;
     }
-  ];
 
-  function buildTest() {
-    const output = [];
+    // TODO: change to radial buttons
 
-    myQuestions.forEach((currentQuestion, questionNumber) => {
-      const answers = [];
+    //console.log("soundNum: " + soundNum);
 
-      for (letter in currentQuestion.answers) {
-        answers.push(
-          `<label>
-             <input type="radio" name="question${questionNumber}" value="${letter}">
-              ${letter} :
-              ${currentQuestion.answers[letter]}
-           </label>`
-        );
-      }
+    soundNum++;
 
-      output.push(
-        `<div class="slide">
-           <div class="question"> ${currentQuestion.question} </div>
-           <div class="answers"> ${answers.join("")} </div>
-         </div>`
-      );
-    });
+    // make sure test has not reached the end
+    if (soundNum < (sounds.length)) {
 
-    testContainer.innerHTML = output.join("");
-  }
+          document.getElementById('soundFile').src = sounds[soundNum];
 
-  function showSlide(n) {
-    slides[currentSlide].classList.remove("active-slide");
-    slides[n].classList.add("active-slide");
-    currentSlide = n;
-    
-    if (currentSlide === 0) {
-      previousButton.style.display = "none";
-    } else {
-      previousButton.style.display = "inline-block";
+        //console.log("Next color blind test check");
     }
-    
-    if (currentSlide === slides.length - 1) {
-      nextButton.style.display = "none";
-      submitButton.style.display = "inline-block";
-    } else {
-      nextButton.style.display = "inline-block";
-      submitButton.style.display = "none";
+    else {
+      // exit test
+      //console.log("Test is over");
+
+      //compare answer key array with user input array
+
+      //go to page for showing users score?
+      //window.location.replace("topScores.html");
+
+      // reset counter
+      soundNum = 0;
+    }  
+
+    onload = function() {
+        document.getElementById('soundFile').src = sounds[0];
     }
-  }
 
-  function showNextSlide() {
-    showSlide(currentSlide + 1);
-  }
-
-  function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-  }
-
-  const testContainer = document.getElementById("test");
-  const submitButton = document.getElementById("submit");
-
-  buildTest();
-
-  const previousButton = document.getElementById("previous");
-  const nextButton = document.getElementById("next");
-  const slides = document.querySelectorAll(".slide");
-  let currentSlide = 0;
-
-  showSlide(0);
-
-  previousButton.addEventListener("click", showPreviousSlide);
-  nextButton.addEventListener("click", showNextSlide);
-})();
+}
