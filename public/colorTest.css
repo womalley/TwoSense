@@ -24,20 +24,38 @@
 }
 
 .answerBoxInput input {
-    margin: 0;
-    padding: 0;
     font-weight: bold;
-    width: 100%;
-    margin-bottom: 20px;
+    width: 9.8vw;
 }
 
 .answerBoxInput input[type="text"] {
-    border: none;
-    border-bottom: 1px solid white;
+    border: 2px solid white;
+    border-bottom: 0px solid transparent;
+    border-radius: 0.5em 0.5em 0em 0em;
     background: transparent;
     outline: none;
-    height: 40px;
+    height: 5vh;
     color: white;
-    font-size: 100%;
+    font-size: 3vh;
     font-weight: 150%;
+    text-align: center;
+}
+
+.nextQButton {
+    font-weight: bold;
+    width: 10vw;
+    border-radius: 0em 0em 1em 1em;
+    border: 2px solid white;
+    background-color: green;
+    color: white;
+    outline: none;
+    padding: 1vh 1vh;
+
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.4s;
+}
+
+.nextQButton:hover {
+    background-color: green;
+    opacity: 0.6;
 }
