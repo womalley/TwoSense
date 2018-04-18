@@ -27,8 +27,16 @@
             <!-- heading -->
             <h1>COLOR-BLINDNESS TEST</h1>
             <div class="pageStyle">
-                <h1 id="colorScore">You scored:</h1>
-                <h1 id="colorScore">0 / 20</h1>
+                <h1>You scored:</h1>
+                <h1 class="colorScore">3 / 20</h1>
+                <p name="colorScore" id="colorScore"></p>
+<!--
+                <script>
+                    var div = document.getElementById("colorScore");
+                    div.innerHTML = "TESTING";
+                </script>
+            -->
+             
                 <button class="tryAgainButton" onclick="colorTestRedirect()">Try again</button>
 
             </div>

@@ -1,0 +1,31 @@
+[debug] [2018-04-18T17:48:23.573Z] ----------------------------------------------------------------------
+[debug] [2018-04-18T17:48:23.576Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-04-18T17:48:23.576Z] CLI Version:   3.17.7
+[debug] [2018-04-18T17:48:23.576Z] Platform:      linux
+[debug] [2018-04-18T17:48:23.576Z] Node Version:  v6.11.1
+[debug] [2018-04-18T17:48:23.576Z] Time:          Wed Apr 18 2018 13:48:23 GMT-0400 (EDT)
+[debug] [2018-04-18T17:48:23.576Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-18T17:48:23.586Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-18T17:48:23.586Z] > authorizing via signed-in user
+[debug] [2018-04-18T17:48:23.588Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/twosense-66771  
+  
+ Wed Apr 18 2018 13:48:23 GMT-0400 (EDT)
+[debug] [2018-04-18T17:48:24.083Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-18T17:48:24.084Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/twosense-66771/tokens  
+  
+ Wed Apr 18 2018 13:48:24 GMT-0400 (EDT)
+[debug] [2018-04-18T17:48:24.488Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-18T17:48:24.492Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/twosense-66771  
+  
+ Wed Apr 18 2018 13:48:24 GMT-0400 (EDT)
+[debug] [2018-04-18T17:48:24.697Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/womalley/TwoSense'...
+[info] 
+[debug] [2018-04-18T17:48:24.705Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1043280577170/clients/_:getWebAppConfig  
+  
+ Wed Apr 18 2018 13:48:24 GMT-0400 (EDT)
+[debug] [2018-04-18T17:48:25.528Z] <<< HTTP RESPONSE 200
+[info] ✔  hosting: Local server: http://localhost:5000
+

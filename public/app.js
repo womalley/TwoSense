@@ -168,7 +168,13 @@ function nextQuestion(response) {
 
     //compare answer key array with user input array
 
-    window.location.replace('colorTestFinalScore.html')
+    window.location.replace('colorTestFinalScore.html');
+    window.setTimeout(5000);
+    console.log("Number of correct answers: " + correct);
+    onload = function() {
+      document.getElementById('colorScore').value = "TESSSSSSSSSSSSSSSSSSSSSSSSSSSST";
+    }
+    
     questionNum = 0;
     correct = 0;
 
@@ -176,6 +182,7 @@ function nextQuestion(response) {
   }
 
 }
+
 
 /* -------------------------- END COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
 
