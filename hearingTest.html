@@ -15,27 +15,34 @@
     <!-- Sidebar navigation -->
     <div class="sideNav">
         <button class="sidNavButton" onclick="profileRedirect()">Profile</button>
-        <button class="sidNavButton" onclick="colorTestRedirect()">Color-blindness Test</button>
+        <button class="sidNavButton" onclick="colorTestRedirect()">Colorblindness Test</button>
         <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Test</button>
         <button class="sidNavButton" onclick="topScoresRedirect()">Leaderboard</button>
         <button class="sidNavBottomButton" onclick="logout()">Logout</button>
     </div>
 
-    <!-- hearing test page content -->
+    <!-- Color-blindness test page content -->
     <div class="pageStyles">
-        <h1>TwoSense Hearing Test</h1>
-    </div>
+        <div class="colorTestBox">
+            <!-- heading -->
+            <h1>TwoSense Frequency Hearing Test</h1>
+            <div class="pageStyle">
+                <div>
+                    <h4>Click play below to hear the sound clip.</h4>
+                    <audio controls id="audioPlayer">
+                        <source src="./Tests/Hearing/100hz.mp3" type="audio/mp3" id="soundFile">
+                    </audio>
+                </div>
+                <div>
+                    <input id="userAnswerIn" type="text" placeholder="Please enter Yes or No">
+                </div>
+                <div>
+                    <button onclick="nextSound()">Next Sound Clip</button>
+                </div>
+            </div>
 
-    <h3>Please select the most appropriate choice.</h3>
-    <div class="test-container">
-    <div id="test">
-        <script src="hearingTest.js"></script>
+        </div>
     </div>
-    </div>
-    <button id="previous">Previous sound clip</button>
-    <button id="next">Next sound clip</button>
-    <button id="submit">Submit</button>
-
 
     <!-- Given by Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
