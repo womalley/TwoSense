@@ -126,7 +126,19 @@ var question = [
     ["./Tests/Colorblindness/9.png", '9']
 ];
 
+var colorAnsKey = [];
+var colorAnsUser = [];
+var correct = 0;
+
 function nextQuestion(response) {
+
+  response = document.getElementById("userAnswerIn").value;
+  console.log("User response: " + response);
+
+  // add user response to user's answers array
+  colorAnsUser.push(response);
+  console.log("User answers: " + colorAnsUser);
+
     if ((questionNum < (question.length)) && (response == question[questionNum][1])) {
         // answer is correct
         correct++;
@@ -141,6 +153,7 @@ function nextQuestion(response) {
     if (questionNum < (question.length)) {
         document.getElementById('colorImg').src = question[questionNum][0];
         console.log("Next color blind test check");
+
     }
     else {
       // exit test
@@ -154,6 +167,9 @@ function nextQuestion(response) {
       // reset counter
       questionNum = 0;
     }  
+
+    //reset input field after button click
+    document.getElementById('userAnswerIn').value = '';
 
     onload = function() {
         document.getElementById('colorImg').src = question[0][0];
