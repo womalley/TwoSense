@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
-body{
+.hearingPageStyles{
     font-size: 20px;
     font-family: 'Work Sans', sans-serif;
     color: #333;
@@ -8,7 +8,7 @@ body{
   text-align: center;
   background-color: #f8f6f0;
 }
-h1{
+.plainText{
   font-weight: 300;
   margin: 0px;
   padding: 10px;
@@ -17,7 +17,7 @@ h1{
   color: #fff;
 }
 
-button{
+.hearingSubmit{
   font-family: 'Work Sans', sans-serif;
     font-size: 22px;
     background-color: rgb(10, 99, 25);
@@ -28,7 +28,7 @@ button{
     cursor: pointer;
     margin: 20px;
 }
-button:hover{
+.hearingSubmit:hover{
     background-color: rgb(49, 180, 78);
 }
 
