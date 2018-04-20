@@ -23,15 +23,17 @@
 
     <!-- Color-blindness test page content -->
     <div class="pageStyles">
-        <div class="colorTestBox">
+        <div class="hearingTestBox">
             <!-- heading -->
             <h1>TwoSense Frequency Hearing Age Test</h1>
             <div class="pageStyle">
                 <div>
                     <h4>Click play below to hear the sound clip.</h4>
-                    <audio controls id="audioPlayer">
-                        <source src="./Tests/Hearing/100hz.mp3" type="audio/mp3" id="soundFile">
-                    </audio>
+                    <div class="audioPlayer">
+                        <audio controls>
+                            <source src="./Tests/Hearing/100hz.mp3" type="audio/mp3" id="soundFile">
+                        </audio>
+                    </div>
                 </div>
                 <div>
                     <input id="userAnswerIn" type="text" placeholder="Please enter Yes or No">
