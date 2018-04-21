@@ -4,7 +4,7 @@
 <head>
 
     <!-- Dependencies -->
-    <link href="./public/login.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="./public/topScores.css" />
     <link href="./public/navBar.css" rel="stylesheet" />
     <link href="./public/app.js" rel="javascript" />
     <link href="./public/404.html" rel="html" />
@@ -15,15 +15,29 @@
     <!-- Sidebar navigation -->
     <div class="sideNav">
         <button class="sidNavButton" onclick="profileRedirect()">Profile</button>
-        <button class="sidNavButton" onclick="colorTestRedirect()">Color-blindness Test</button>
+        <button class="sidNavButton" onclick="colorTestRedirect()">Color Blindness Test</button>
         <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Age Test</button>
         <button class="sidNavButton" onclick="topScoresRedirect()">Leaderboard</button>
-        <button class="sidNavBottomButton" onclick="logout()">LOGOUT</button>
+        <button class="sidNavBottomButton" onclick="logout()">Logout</button>
     </div>
+    
 
     <!-- Top scores page content -->
     <div class="pageStyles">
-        <h1>TOP SCORES PAGE!</h1>
+        <h1>Leaderboard</h1>
+
+        <h2>1.</h2>
+        <h4>Jeffrey Alan Turkstra</h4>
+        <h4>300 pts</h4>
+        
+        <h2>2.</h2>
+        <h4>Gustavo Rodriguez-Rivera</h4>
+        <h4>200 pts</h4>
+
+        <h2>3.</h2>
+        <h4>George Bunch Adams</h4>
+        <h4>100 pts</h4>
+
     </div>
 
     <!-- Given by Firebase -->

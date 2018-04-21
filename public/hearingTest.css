@@ -8,6 +8,7 @@
   text-align: center;
   background-color: #f8f6f0;
 }
+
 .plainText{
   font-weight: 300;
   margin: 0px;
@@ -17,7 +18,7 @@
   color: #fff;
 }
 
-.hearingSubmit{
+.next-sound button{
   font-family: 'Work Sans', sans-serif;
     font-size: 22px;
     background-color: rgb(10, 99, 25);

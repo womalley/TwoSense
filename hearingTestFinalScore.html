@@ -4,7 +4,7 @@
 <head>
 
     <!-- Dependencies -->
-    <link type="text/css" rel="stylesheet" href="./public/colorTest.css" />
+    <link href="./public/colorTestFinalScore.css" rel="stylesheet" />
     <link href="./public/navBar.css" rel="stylesheet" />
     <link href="./public/app.js" rel="javascript" />
     <link href="./public/404.html" rel="html" />
@@ -21,26 +21,19 @@
         <button class="sidNavBottomButton" onclick="logout()">Logout</button>
     </div>
 
-    <!-- Color-blindness test page content -->
+    <!-- profile page content -->
     <div class="pageStyles">
-        <div class="colorTestBox">
+        <div class="colorTestResultsBox">
             <!-- heading -->
-            <h1>TwoSense Colorblindness Test</h1>
+            <h1>Hearing Age Test Results</h1>
             <div class="pageStyle">
-                <img src="./Tests/Colorblindness/1.png" id="colorImg" />
-                <div class="colorScore"></div>
+                <h1 id="colorScore">You scored:</h1>
+                <h1 id="colorScore">0 / 20</h1>
+                <button class="tryAgainButton" onclick="colorTestRedirect()">Try again</button>
 
-                <h1>Please enter your answer below. If you do not see a number enter 'none'.</h1>
-                <div class="answerBoxInput">
-                    <input id="userAnswerIn" type="text" placeholder="Answer">
-                </div>
-                
-                <button class="nextQButton" onclick="nextQuestion()">NEXT</button>
-                <div class="colorScore"></div>
             </div>
 
         </div>
-
     </div>
 
     <!-- Given by Firebase -->
@@ -56,10 +49,10 @@
             messagingSenderId: "1043280577170"
         };
         firebase.initializeApp(config);
-
+        
     </script>
     <!-- End given code by Firebase -->
-
+    
     <script src="./public/app.js"> </script>
 
 </body>

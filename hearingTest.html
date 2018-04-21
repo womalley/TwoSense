@@ -15,28 +15,33 @@
     <!-- Sidebar navigation -->
     <div class="sideNav">
         <button class="sidNavButton" onclick="profileRedirect()">Profile</button>
-        <button class="sidNavButton" onclick="colorTestRedirect()">Colorblindness Test</button>
-        <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Test</button>
+        <button class="sidNavButton" onclick="colorTestRedirect()">Color Blindness Test</button>
+        <button class="sidNavButton" onclick="hearingTestRedirect()">Hearing Age Test</button>
         <button class="sidNavButton" onclick="topScoresRedirect()">Leaderboard</button>
-        <button class="sidNavBottomButton" onclick="logout()">LOGOUT</button>
+        <button class="sidNavBottomButton" onclick="logout()">Logout</button>
     </div>
 
     <!-- Color-blindness test page content -->
     <div class="pageStyles">
-        <div class="colorTestBox">
+        <div class="hearingTestBox">
             <!-- heading -->
-            <h1 class="plainText">TwoSense Frequency Hearing Test</h1>
+            <h1 class="plainText">TwoSense Frequency Age Hearing Test</h1>
             <div class="hearingPageStyles">
                 <div>
                     <h4>Click play below to hear the sound clip.</h4>
-                    <audio controls id="audioPlayer">
-                        <source src="./Tests/Hearing/100hz.mp3" type="audio/mp3" id="soundFile">
-                    </audio>
+                    <div class="audioPlayer">
+                        <audio controls>
+                            <source src="./Tests/Hearing/100hz.mp3" type="audio/mp3" id="soundFile">
+                        </audio>
+                    </div>
                 </div>
                 <div>
                     <input id="userAnswerIn" type="text" placeholder="Please enter Yes or No">
                 </div>
                 <div>
+                    <label class="next-sound">
+                        <button onclick="nextSound()">Next Sound Clip</button>
+                    </label>
                     <button class="hearingSubmit" onclick="nextSound()">Next Sound Clip</button>
                 </div>
             </div>
