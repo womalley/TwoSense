@@ -71,8 +71,8 @@
 }
 
 .backGroundLogo {
-    background-image: url("./backgrounds/twoSenseLogo.jpg");
+    background-image: url("./backgrounds/TwoSenseLogoV1.png");
     background-repeat: no-repeat;
     background-position: 50% 20vh;
-    background-size: 10%;
+    background-size: 30%;
 }
