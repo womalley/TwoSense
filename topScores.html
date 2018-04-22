@@ -20,24 +20,25 @@
         <button class="sidNavButton" onclick="topScoresRedirect()">Leaderboard</button>
         <button class="sidNavBottomButton" onclick="logout()">Logout</button>
     </div>
-    
+
 
     <!-- Top scores page content -->
     <div class="pageStyles">
-        <h1>Leaderboard</h1>
+        <div class="textBody">
+            <h1 class="textScores">Leaderboard</h1>
 
-        <h2>1.</h2>
-        <h4>Jeffrey Alan Turkstra</h4>
-        <h4>300 pts</h4>
-        
-        <h2>2.</h2>
-        <h4>Gustavo Rodriguez-Rivera</h4>
-        <h4>200 pts</h4>
+            <h2>1.</h2>
+            <h4>Jeffrey Alan Turkstra</h4>
+            <h4>300 pts</h4>
 
-        <h2>3.</h2>
-        <h4>George Bunch Adams</h4>
-        <h4>100 pts</h4>
+            <h2>2.</h2>
+            <h4>Gustavo Rodriguez-Rivera</h4>
+            <h4>200 pts</h4>
 
+            <h2>3.</h2>
+            <h4>George Bunch Adams</h4>
+            <h4>100 pts</h4>
+        </div>
     </div>
 
     <!-- Given by Firebase -->
@@ -53,10 +54,10 @@
             messagingSenderId: "1043280577170"
         };
         firebase.initializeApp(config);
-        
+
     </script>
     <!-- End given code by Firebase -->
-    
+
     <script src="./public/app.js"> </script>
 
 </body>

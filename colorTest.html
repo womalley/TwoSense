@@ -7,6 +7,7 @@
     <link type="text/css" rel="stylesheet" href="./public/colorTest.css" />
     <link href="./public/navBar.css" rel="stylesheet" />
     <link href="./public/app.js" rel="javascript" />
+    <link href="./public/color.js" rel="javascript" />
     <link href="./public/404.html" rel="html" />
 </head>
 
@@ -25,22 +26,25 @@
     <div class="pageStyles">
         <div class="colorTestBox">
             <!-- heading -->
-            <h1>TwoSense Colorblindness Test</h1>
+            <h1 class="textColor">TwoSense Color Blindness Test</h1>
             <div class="pageStyle">
+                <!-- testing html/CSS -->
                 <img src="./Tests/Colorblindness/1.png" id="colorImg" />
-                <div class="colorScore"></div>
 
-                <h1>Please enter your answer below. If you do not see a number enter 'none'.</h1>
+                <h1 id="textBody" class="textBody">Please enter your answer below. If you do not see a number enter 'none'.</h1>
                 <div class="answerBoxInput">
                     <input id="userAnswerIn" type="text" placeholder="Answer">
                 </div>
-                
-                <button class="nextQButton" onclick="nextQuestion()">NEXT</button>
-                <div class="colorScore"></div>
+                <button id="nextQButton" class="nextQButton" onclick="nextQuestion()">NEXT</button>
+
+                <!-- final score html/CSS -->
+                <h1 id="finalTextBody" class="textBodyLarge">You scored:</h1>
+                <h1 id="colorScore" class="textBodyLarge"></h1>
+
+                <button id="tryAgainButton" class="tryAgainButton" onclick="colorTestRedirect()">Try again</button>
+
             </div>
-
         </div>
-
     </div>
 
     <!-- Given by Firebase -->

@@ -99,6 +99,15 @@ function checkLoggedIn() {
 
 /* -------------------------- COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
 
+// hide final score elements for color test until final else
+var finalTextElement = document.getElementById("finalTextBody");
+var colorScoreElement = document.getElementById("colorScore");
+var tryAgainButtonElement = document.getElementById("tryAgainButton");
+
+finalTextElement.style.display = "none";
+colorScoreElement.style.display = "none";
+tryAgainButtonElement.style.display = "none";
+
 var questionNum = 0;
 var correctAns = 0;
 
@@ -129,6 +138,7 @@ var question = [
 var colorAnsKey = ['none', '2', '2', '3', 'none', '4', '5', '5', '5', '5', '6', '6', '7', '7', '7', '7', '8', '9', '9', '9', '9'];
 var colorAnsUser = [];
 var correct = 0;
+var finalScore;
 
 function nextQuestion(response) {
 
@@ -168,19 +178,33 @@ function nextQuestion(response) {
 
     //compare answer key array with user input array
 
-    window.location.replace('colorTestFinalScore.html');
-    window.setTimeout(5000);
+    //window.location.replace('colorTestFinalScore.html');
+    //window.setTimeout(5000);
     console.log("Number of correct answers: " + correct);
-    onload = function() {
-      document.getElementById('colorScore').value = "TESSSSSSSSSSSSSSSSSSSSSSSSSSSST";
-    }
-    
+
+    finalScore = correct;
+
+    document.getElementById("colorScore").innerHTML = finalScore + " / " + (question.length);
+
+    // make test sheet hidden
+    var imgElement = document.getElementById("colorImg");
+    var textElement = document.getElementById("textBody");
+    var inputTestElement = document.getElementById("userAnswerIn");
+    var buttonTestElement = document.getElementById("nextQButton");
+
+    imgElement.style.display = "none";
+    textElement.style.display = "none";
+    inputTestElement.style.display = "none";
+    buttonTestElement.style.display = "none";
+
+    // display final score results for color blindness test
+    finalTextElement.style.display = "block";
+    colorScoreElement.style.display = "block";
+    tryAgainButtonElement.style.display = "block";
+
     questionNum = 0;
     correct = 0;
-
-    //dispColorScore();
   }
-
 }
 
 
