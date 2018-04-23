@@ -26,24 +26,26 @@
         <div class="hearingTestBox">
             <!-- heading -->
             <h1 class="plainText">TwoSense Frequency Age Hearing Test</h1>
-            <div class="hearingPageStyles">
-                <div>
-                    <h4>Click play below to hear the sound clip.</h4>
-                    <div class="audioPlayer">
-                            <audio controls src="./Tests/Hearing/100hz.mp3" id="soundFile">
-                    </div>
-                </div>
-                <div>
-                    <input id="userAnswerIn" type="text" placeholder="Please enter Yes or No">
-                </div>
-                <div>
-                    <label class="next-sound">
-                        <button onclick="nextSound()">Next Sound Clip</button>
-                    </label>
-                </div>
+
+            <!-- testing elements -->
+            <h1 id="textHearing1" class="textBodyHearing">Click play below to hear the sound clip</h1>
+            <div class="audioPlayer">
+                <audio controls src="./Tests/Hearing/100hz.mp3" id="soundFile">
             </div>
+            <div id="textHearing2" class="textBodyHearing">Please select which ear you hear a sound in</div>
+
+            <button id="leftButton" class="nextSoundButton" onclick="nextSound(0)">Left</button>
+            <button id="rightButton" class="nextSoundButton" onclick="nextSound(1)">Right</button>
+            <button id="neitherButton" class="nextSoundButton" onclick="nextSound(2)">Neither</button>
+
+            <!-- hearing score elements -->
+            <h1 id="finalTextHearing" class="textBodyLarge">You scored:</h1>
+            <h1 id="hearingScore" class="textBodyLarge"></h1>
+
+            <button id="tryAgainHearingButton" class="tryAgainHearingButton" onclick="hearingTestRedirect()">Try again</button>
 
         </div>
+        
     </div>
 
     <!-- Given by Firebase -->
@@ -59,10 +61,10 @@
             messagingSenderId: "1043280577170"
         };
         firebase.initializeApp(config);
-        
+
     </script>
     <!-- End given code by Firebase -->
-    
+
     <script src="./public/app.js"> </script>
 
 </body>
