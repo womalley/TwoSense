@@ -217,6 +217,18 @@ function nextQuestion(response) {
 var soundNum = 0;
 var numTrue = 0;
 
+// hide final score elements for color test until final else
+var finalTextHearingElement = document.getElementById("finalTextHearing");
+var hearingScoreElement = document.getElementById("hearingScore");
+var tryAgainHearingButtonElement = document.getElementById("tryAgainHearingButton");
+
+// hide elements if on color blindness test page (otherwise ignore)
+if (finalTextHearingElement != null && hearingScoreElement != null && tryAgainHearingButtonElement != null) {
+  finalTextHearingElement.style.display = "none";
+  hearingScoreElement.style.display = "none";
+  tryAgainHearingButtonElement.style.display = "none";
+}
+
 var sounds = [
   ["./Tests/Hearing/100hz.mp3", "-1"],
   ["./Tests/Hearing/500hz.mp3", "-1"],
@@ -228,15 +240,21 @@ var sounds = [
   ["./Tests/Hearing/20hz.mp3", "-1"]
 ];
 
+// TODO: Set answer key values!
+var hearingAnsKey = [];
+var hearingAnsUser = [];
+
 function nextSound(resp) {
 
+  console.log("button selected: " + resp);
   console.log("sound length: " + sounds.length);
   console.log("sound to play: " + sounds[soundNum][0]);
 
-  if (soundNum < (sounds.length)) {
-    if (resp === "yes")
-      numTrue++;
-  }
+  // add user response to user's answers array
+  hearingAnsUser.push(resp);
+
+  console.log("User answers: " + hearingAnsUser);
+
   soundNum++;
 
   console.log("soundNum: " + soundNum);
@@ -249,6 +267,27 @@ function nextSound(resp) {
   } 
   else {
     console.log("reset sound number");
+
+    // make test sheet hidden
+    var textHearingElement1 = document.getElementById("textHearing1");
+    var textHearingElement2 = document.getElementById("textHearing2");
+    var leftButtonElement = document.getElementById("leftButton");
+    var rightButtonElement = document.getElementById("rightButton");
+    var neitherButtonElement = document.getElementById("neitherButton");
+    var soundFileElement = document.getElementById("soundFile");
+
+    textHearingElement1.style.display = "none";
+    textHearingElement2.style.display = "none";
+    leftButtonElement.style.display = "none";
+    rightButtonElement.style.display = "none";
+    neitherButtonElement.style.display = "none";
+    soundFileElement.style.display = "none";
+
+    // display final score results for color blindness test
+    finalTextHearingElement.style.display = "block";
+    hearingScoreElement.style.display = "block";
+    tryAgainHearingButtonElement.style.display = "block";
+
     soundNum = 0;
   }
 
