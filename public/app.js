@@ -99,19 +99,23 @@ function checkLoggedIn() {
 
 /* -------------------------- COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
 
+var questionNum = 0;
+var correctAns = 0;
+
+
 // hide final score elements for color test until final else
 var finalTextElement = document.getElementById("finalTextBody");
 var colorScoreElement = document.getElementById("colorScore");
 var tryAgainButtonElement = document.getElementById("tryAgainButton");
 
-finalTextElement.style.display = "none";
-colorScoreElement.style.display = "none";
-tryAgainButtonElement.style.display = "none";
+// hide elements if on color blindness test page (otherwise ignore)
+if (finalTextElement != null && colorScoreElement != null && tryAgainButtonElement != null) {
+  finalTextElement.style.display = "none";
+  colorScoreElement.style.display = "none";
+  tryAgainButtonElement.style.display = "none";
+}
 
-var questionNum = 0;
-var correctAns = 0;
-
-var question = [
+const question = [
   ["./Tests/Colorblindness/1.png", 'none'],
   ["./Tests/Colorblindness/2.0.png", '2'],
   ["./Tests/Colorblindness/2.1.png", '2'],
@@ -155,8 +159,6 @@ function nextQuestion(response) {
     correct++;
   }
 
-  // TODO: add progress bar
-
   console.log("questionNum: " + questionNum);
 
   questionNum++;
@@ -178,8 +180,6 @@ function nextQuestion(response) {
 
     //compare answer key array with user input array
 
-    //window.location.replace('colorTestFinalScore.html');
-    //window.setTimeout(5000);
     console.log("Number of correct answers: " + correct);
 
     finalScore = correct;
@@ -209,5 +209,55 @@ function nextQuestion(response) {
 
 
 /* -------------------------- END COLOR-BLINDNESS TESTING FUNCTIONS -------------------------- */
+
+
+
+/* -------------------------------- HEARING TESTING FUNCTIONS -------------------------------- */
+
+var soundNum = 0;
+var numTrue = 0;
+
+var sounds = [
+  ["../Tests/Hearing/100hz.mp3", "-1"],
+  ["../Tests/Hearing/500hz.mp3", "-1"],
+  ["../Tests/Hearing/1000hz.mp3", "-1"],
+  ["../Tests/Hearing/2000hz.mp3", "-1"],
+  ["../Tests/Hearing/3000hz.mp3", "-1"],
+  ["../Tests/Hearing/5000hz.mp3", "-1"],
+  ["../Tests/Hearing/7000hz.mp3", "-1"],
+  ["../Tests/Hearing/20hz.mp3", "-1"]
+];
+
+function nextSound(resp) {
+
+  console.log("sound length: " + sounds.length);
+  console.log("sound to play: " + sounds[soundNum][0]);
+
+  if (soundNum < (sounds.length)) {
+    if (resp === "yes")
+      numTrue++;
+  }
+  soundNum++;
+
+  console.log("soundNum: " + soundNum);
+
+  if (soundNum < (sounds.length)) {
+
+    console.log("Set next sound");
+    document.getElementById('soundFile').src = sounds[soundNum][0];
+
+  } 
+  else {
+    console.log("reset sound number");
+    soundNum = 0;
+  }
+
+  onload = function () {
+    console.log("ONLOAD");
+    document.getElementById('soundFile').src = sounds[0][0];
+  }
+}
+
+/* ------------------------------ END HEARING TESTING FUNCTIONS ------------------------------ */
 
 

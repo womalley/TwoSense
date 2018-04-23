@@ -19,6 +19,7 @@
     color: slategray;
     margin: auto;
     text-align: center;
+    margin-top: 25vh; 
 }
 
 .landingButtons {
@@ -73,6 +74,6 @@
 .backGroundLogo {
     background-image: url("./backgrounds/TwoSenseLogoV1.png");
     background-repeat: no-repeat;
-    background-position: 50% 20vh;
+    background-position: 50% 8vh;
     background-size: 30%;
 }
