@@ -218,14 +218,14 @@ var soundNum = 0;
 var numTrue = 0;
 
 var sounds = [
-  ["../Tests/Hearing/100hz.mp3", "-1"],
-  ["../Tests/Hearing/500hz.mp3", "-1"],
-  ["../Tests/Hearing/1000hz.mp3", "-1"],
-  ["../Tests/Hearing/2000hz.mp3", "-1"],
-  ["../Tests/Hearing/3000hz.mp3", "-1"],
-  ["../Tests/Hearing/5000hz.mp3", "-1"],
-  ["../Tests/Hearing/7000hz.mp3", "-1"],
-  ["../Tests/Hearing/20hz.mp3", "-1"]
+  ["./Tests/Hearing/100hz.mp3", "-1"],
+  ["./Tests/Hearing/500hz.mp3", "-1"],
+  ["./Tests/Hearing/1000hz.mp3", "-1"],
+  ["./Tests/Hearing/2000hz.mp3", "-1"],
+  ["./Tests/Hearing/3000hz.mp3", "-1"],
+  ["./Tests/Hearing/5000hz.mp3", "-1"],
+  ["./Tests/Hearing/7000hz.mp3", "-1"],
+  ["./Tests/Hearing/20hz.mp3", "-1"]
 ];
 
 function nextSound(resp) {
