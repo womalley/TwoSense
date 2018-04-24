@@ -1,4 +1,10 @@
 
+src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js";
+
+var database = firebase.database();
+var ref = database.ref('leaderboard');
+
+
 /* -------------------------- LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
 
 /* Create login on click event */
@@ -46,19 +52,54 @@ function registerButtonCheck() {
     console.log(e.message);
     alert("The email you entered is already registered or does not exist.");
   });
+
 }
+
+// function populateUser() {
+//   firebase.auth().onAuthStateChanged(user => {
+//     if (user) { this.userId = user.uid }
+//     console.log("USER ID: " + this.userId);
+
+//     uid = this.userId;
+
+//     firebase.database().ref().child('users').child(uid).set({
+//       userId: this.userId,
+//       colorTop: 0,
+//       colorLast: 0,
+//       hearingTop: 0,
+//       hearingLast: 0
+//     });
+//   });
+// }
 
 // log user information
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
   if (firebaseUser) {
     console.log(firebaseUser);
-    //window.location.replace("home.html");
     console.log("User is logged in!");
+
+    var uid = firebase.auth().currentUser.uid;
+    console.log("UID: " + uid);
+
+    var userEmail = firebase.auth().currentUser.email;
+    console.log("EMAIL: " + userEmail);
+
+    // MAY NEED TO EDIT
+    firebase.database().ref().child('users').child(uid).set({
+      userId: uid,
+      email: userEmail
+    });
+
   }
   else {
     console.log("User is not logged in!");
   }
+});
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) { this.userId = user.uid }
+  console.log("USER ID: " + this.userId);
 });
 
 
@@ -184,6 +225,11 @@ function nextQuestion(response) {
 
     finalScore = correct;
 
+    var data = {
+      colorScore: finalScore
+    }
+    ref.push(data);
+
     document.getElementById("colorScore").innerHTML = finalScore + " / " + (question.length);
 
     // make test sheet hidden
@@ -264,7 +310,7 @@ function nextSound(resp) {
     console.log("Set next sound");
     document.getElementById('soundFile').src = sounds[soundNum][0];
 
-  } 
+  }
   else {
     console.log("reset sound number");
 
@@ -298,5 +344,4 @@ function nextSound(resp) {
 }
 
 /* ------------------------------ END HEARING TESTING FUNCTIONS ------------------------------ */
-
 

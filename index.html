@@ -63,7 +63,7 @@
 
         <button onclick="loginButtonCheck()" id="loginButton" class="buttonSignInPage">SIGN IN</button>
 
-        <button onclick="registerButtonCheck()" id="registerButton" class="buttonSignInPage">REGISTER</button>
+        <button onclick="registerButtonCheck();" id="registerButton" class="buttonSignInPage">REGISTER</button>
 
         <!-- <button id="logoutButton" class="buttonSignInPage">LOG OUT</button> -->
     </div>
@@ -82,6 +82,7 @@
         };
         firebase.initializeApp(config);
         /* End given code */
+        var db = firebase.database();
     </script>
     <script src="./public/app.js"> </script>
 
