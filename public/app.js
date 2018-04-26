@@ -3,7 +3,7 @@ src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js";
 
 var database = firebase.database();
 var ref = database.ref('leaderboard');
-
+ref.on('value', obtainData, errorData);
 
 /* -------------------------- LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
 
@@ -223,11 +223,18 @@ function nextQuestion(response) {
 
     console.log("Number of correct answers: " + correct);
 
+    // TODO: SET FINAL SCORE TO SOME MULTIPLE NUMBER (100?)
     finalScore = correct;
+    var username = firebase.auth().currentUser.email;
+    username = username.split("@");
+    username = username[0];
+    console.log("USERNAME: " + username);
 
     var data = {
+      username: username,
       colorScore: finalScore
     }
+
     ref.push(data);
 
     document.getElementById("colorScore").innerHTML = finalScore + " / " + (question.length);
@@ -344,4 +351,76 @@ function nextSound(resp) {
 }
 
 /* ------------------------------ END HEARING TESTING FUNCTIONS ------------------------------ */
+
+
+/* ------------------------------ LEADERBOARD DATABASE FUNCTIONS ------------------------------ */
+
+function obtainData(data) {
+  // show all scores
+  console.log(data.val());
+  var score = data.val();
+  var keys = Object.keys(score);
+  console.log("Keys: " + keys);
+
+  var scoreLength = keys.length;
+  console.log("LENGTH:" + scoreLength);
+  var colorArr = [];
+  var colorUser = [];
+
+  // set all values to colorScore
+  for (var index = 0; index < scoreLength; index++) {
+    var k = keys[index];
+    var colorScore = score[k].colorScore;
+    var name = score[k].username;
+    console.log("COLOR: " + colorScore);
+    colorArr.push(score[k].colorScore); 
+    colorUser.push(score[k].username);
+  }
+
+  // sort by score
+  var swapped;
+  do {
+      swapped = false;
+      for (var i=0; i < colorArr.length-1; i++) {
+          if (colorArr[i] > colorArr[i+1]) {
+              var temp = colorArr[i];
+              colorArr[i] = colorArr[i+1];
+              colorArr[i+1] = temp;
+
+              var temp2 = colorUser[i];
+              colorUser[i] = colorUser[i+1];
+              colorUser[i+1] = temp;
+
+              swapped = true;
+          }
+      }
+  } while (swapped);
+
+
+  console.log("HELLO: " + colorArr);
+
+  // display the first 10
+  if (scoreLength > 10) {
+    scoreLength = 10;
+  }
+
+  var list = "";
+  for (var index = 0; index < scoreLength; index++) {
+   
+    list += "<li>" + colorUser[index] + "  -  " + colorArr[index] + "</li>";
+   
+  }
+
+  var colorLeaderboardElement = document.getElementById("colorLeaderboard");
+  if (colorLeaderboardElement != null) {
+    document.getElementById("colorLeaderboard").innerHTML = list;
+  }
+
+}
+
+function errorData(err) {
+  console.log("ERROR: " + err);
+}
+
+/* ---------------------------- END LEADERBOARD DATABASE FUNCTIONS ---------------------------- */
 
