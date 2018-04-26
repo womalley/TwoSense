@@ -112,3 +112,21 @@
   background-color: rgb(97, 169, 228);
   opacity: 0.6;
 }
+
+.textFinal {
+  margin-top: 3%;
+  font-size: 3.5vh;
+  font-family: 'Work Sans', sans-serif;
+  color: white;
+  font-weight: 300;
+  text-align: center;
+}
+
+.textFinalLarge {
+  margin-top: 10%;
+  font-size: 7vh;
+  font-family: 'Work Sans', sans-serif;
+  color: white;
+  font-weight: 300;
+  text-align: center;
+}
