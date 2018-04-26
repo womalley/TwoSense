@@ -5,6 +5,9 @@ var database = firebase.database();
 var ref = database.ref('leaderboard');
 ref.on('value', obtainData, errorData);
 
+var hearingRef = database.ref('hearingLeaderboard');
+hearingRef.on('value', obtainHearingData, errorData);
+
 /* -------------------------- LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
 
 /* Create login on click event */
@@ -17,6 +20,7 @@ function loginButtonCheck() {
   // sign in with email and password
   const loginAttempt = firebase.auth().signInWithEmailAndPassword(email, password); // login successful
   loginAttempt.catch(e => {
+    //alert("The email and password does not exist. Please check your email and password.");
     window.location.replace("");
   });
 
@@ -269,16 +273,30 @@ function nextQuestion(response) {
 
 var soundNum = 0;
 var numTrue = 0;
+var hearingCorrect = 0;
+var leftCorrect = 0;
+var rightCorrect = 0;
+var totalHearingScore;
 
 // hide final score elements for color test until final else
-var finalTextHearingElement = document.getElementById("finalTextHearing");
+var finalTextHearingElement1 = document.getElementById("finalTextHearing1");
+var finalTextHearingElement2 = document.getElementById("finalTextHearing2");
+var finalTextHearingElement3 = document.getElementById("finalTextHearing3");
+
 var hearingScoreElement = document.getElementById("hearingScore");
+var leftScoreElement = document.getElementById("leftHearingScore");
+var rightScoreElement = document.getElementById("rightHearingScore");
 var tryAgainHearingButtonElement = document.getElementById("tryAgainHearingButton");
 
 // hide elements if on color blindness test page (otherwise ignore)
-if (finalTextHearingElement != null && hearingScoreElement != null && tryAgainHearingButtonElement != null) {
-  finalTextHearingElement.style.display = "none";
+if (finalTextHearingElement1 != null && hearingScoreElement != null && tryAgainHearingButtonElement != null) {
+  finalTextHearingElement1.style.display = "none";
+  finalTextHearingElement2.style.display = "none";
+  finalTextHearingElement3.style.display = "none";
+
   hearingScoreElement.style.display = "none";
+  leftScoreElement.style.display = "none";
+  rightScoreElement.style.display = "none";
   tryAgainHearingButtonElement.style.display = "none";
 
   // set default volume level to 50%
@@ -287,36 +305,34 @@ if (finalTextHearingElement != null && hearingScoreElement != null && tryAgainHe
 }
 
 var sounds = [
-  ["./Tests/Hearing/Left/20hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/500hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/1000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/2000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/3000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/5000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/7000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/8500hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/10000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/12000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/13500hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/15000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/16500hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/18000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Left/20000hzleft.mp3", "-1"],
-  ["./Tests/Hearing/Right/20hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/500hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/1000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/2000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/3000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/5000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/7000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/8500hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/10000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/12000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/13500hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/15000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/16500hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/18000hzright.mp3", "-1"],
-  ["./Tests/Hearing/Right/20000hzright.mp3", "-1"],
+  ["./Tests/Hearing/Left/500hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/8500hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/1000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/5000hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/2000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/20000hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/3000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/16500hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/20000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/18000hzright.mp3", "1"],
+  ["./Tests/Hearing/Right/3000hzright.mp3", "1"],
+  ["./Tests/Hearing/Right/10000hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/7000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/15000hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/8500hzleft.mp3", "0"],
+  ["./Tests/Hearing/Left/10000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/13500hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/12000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/1000hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/13500hzleft.mp3", "0"],
+  ["./Tests/Hearing/Left/15000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/500hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/16500hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/7000hzright.mp3", "1"],
+  ["./Tests/Hearing/Left/18000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Left/5000hzleft.mp3", "0"],
+  ["./Tests/Hearing/Right/2000hzright.mp3", "1"],
+  ["./Tests/Hearing/Right/12000hzright.mp3", "1"],
 ];
 
 // TODO: Set answer key values!
@@ -332,6 +348,20 @@ function nextSound(resp) {
   // add user response to user's answers array
   hearingAnsUser.push(resp);
 
+  if ((soundNum < (sounds.length)) && (resp == sounds[soundNum][1])) {
+    // answer is correct
+    console.log("User's answer is correct!")
+    hearingCorrect++;
+
+    // individual ear scores
+    if (sounds[soundNum][1] == 0) {
+      leftCorrect++;
+    }
+    else if (sounds[soundNum][1] == 1) {
+      rightCorrect++;
+    }
+  }
+
   console.log("User answers: " + hearingAnsUser);
 
   soundNum++;
@@ -346,6 +376,34 @@ function nextSound(resp) {
   }
   else {
     console.log("reset sound number");
+
+    // set scores and username
+    totalHearingScore = hearingCorrect;
+    var totalHearingScoreVal = Math.trunc(((totalHearingScore / sounds.length) * 1000));
+
+    var username = firebase.auth().currentUser.email;
+    username = username.split("@");
+    username = username[0];
+    console.log("USERNAME: " + username);
+
+    // add to firebase real-time database
+    var hearingData = {
+      username: username,
+      hearingScore: totalHearingScoreVal
+    }
+
+    hearingRef.push(hearingData);
+
+    leftEar = Math.trunc(((leftCorrect / (sounds.length / 2)) * 100));
+    rightEar = Math.trunc(((rightCorrect / (sounds.length / 2)) * 100));
+
+    document.getElementById("hearingScore").innerHTML = totalHearingScoreVal; //totalHearingScore + " / " + (sounds.length);
+    document.getElementById("leftHearingScore").innerHTML = leftEar + "%";
+    document.getElementById("rightHearingScore").innerHTML = rightEar + "%";
+
+    console.log("LEFT: " + leftCorrect);
+    console.log("RIGHT: " + rightCorrect); 
+
 
     // make test sheet hidden
     var textHearingElement1 = document.getElementById("textHearing1");
@@ -363,8 +421,13 @@ function nextSound(resp) {
     soundFileElement.style.display = "none";
 
     // display final score results for color blindness test
-    finalTextHearingElement.style.display = "block";
+    finalTextHearingElement1.style.display = "block";
+    finalTextHearingElement2.style.display = "block";
+    finalTextHearingElement3.style.display = "block";
+
     hearingScoreElement.style.display = "block";
+    leftScoreElement.style.display = "block";
+    rightScoreElement.style.display = "block";
     tryAgainHearingButtonElement.style.display = "block";
 
     soundNum = 0;
@@ -379,7 +442,7 @@ function nextSound(resp) {
 /* ------------------------------ END HEARING TESTING FUNCTIONS ------------------------------ */
 
 
-/* ------------------------------ LEADERBOARD DATABASE FUNCTIONS ------------------------------ */
+/* ------------------------- BLINDNESS LEADERBOARD DATABASE FUNCTIONS ------------------------- */
 
 function obtainData(data) {
   // show all scores
@@ -449,4 +512,72 @@ function errorData(err) {
 }
 
 /* ---------------------------- END LEADERBOARD DATABASE FUNCTIONS ---------------------------- */
+
+
+/* -------------------------- HEARING LEADERBOARD DATABASE FUNCTIONS -------------------------- */
+
+function obtainHearingData(hearingData) {
+  // show all scores
+  console.log(hearingData.val());
+  var soundScore = hearingData.val();
+  var keys = Object.keys(soundScore);
+  console.log("Keys: " + keys);
+
+  var scoreLength = keys.length;
+  console.log("LENGTH:" + scoreLength);
+  var hearingArr = [];
+  var hearingUser = [];
+
+  // set all values to colorScore
+  for (var index = 0; index < scoreLength; index++) {
+    var k = keys[index];
+    var hearScore = soundScore[k].hearingScore;
+    var name = soundScore[k].username;
+    console.log("HEARING: " + hearScore);
+    hearingArr.push(soundScore[k].hearingScore); 
+    hearingUser.push(soundScore[k].username);
+  }
+
+  // sort by score
+  var swapped;
+  do {
+      swapped = false;
+      for (var i=0; i < hearingArr.length-1; i++) {
+          if (hearingArr[i] < hearingArr[i+1]) {
+              var temp = hearingArr[i];
+              hearingArr[i] = hearingArr[i+1];
+              hearingArr[i+1] = temp;
+
+              var temp2 = hearingUser[i];
+              hearingUser[i] = hearingUser[i+1];
+              hearingUser[i+1] = temp2;
+
+              swapped = true;
+          }
+      }
+  } while (swapped);
+
+  console.log("Hearing Scores: " + hearingArr);
+  console.log("Hearing Names: " + hearingUser);
+
+  // display the first 10
+  if (scoreLength > 10) {
+    scoreLength = 10;
+  }
+
+  var list = "";
+  for (var index = 0; index < scoreLength; index++) {
+   
+    list += "<li>" + hearingUser[index] + "  -  " + hearingArr[index] + "</li>";
+   
+  }
+
+  var hearingLeaderboardElement = document.getElementById("hearingLeaderboard");
+  if (hearingLeaderboardElement != null) {
+    document.getElementById("hearingLeaderboard").innerHTML = list;
+  }
+
+}
+
+/* ------------------------ END HEARING LEADERBOARD DATABASE FUNCTIONS ------------------------ */
 
