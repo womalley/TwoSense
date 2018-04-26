@@ -280,6 +280,10 @@ if (finalTextHearingElement != null && hearingScoreElement != null && tryAgainHe
   finalTextHearingElement.style.display = "none";
   hearingScoreElement.style.display = "none";
   tryAgainHearingButtonElement.style.display = "none";
+
+  // set default volume level to 50%
+  var audio = document.getElementById("soundFile");
+  audio.volume = 0.5;
 }
 
 var sounds = [
@@ -404,22 +408,22 @@ function obtainData(data) {
   do {
       swapped = false;
       for (var i=0; i < colorArr.length-1; i++) {
-          if (colorArr[i] > colorArr[i+1]) {
+          if (colorArr[i] < colorArr[i+1]) {
               var temp = colorArr[i];
               colorArr[i] = colorArr[i+1];
               colorArr[i+1] = temp;
 
               var temp2 = colorUser[i];
               colorUser[i] = colorUser[i+1];
-              colorUser[i+1] = temp;
+              colorUser[i+1] = temp2;
 
               swapped = true;
           }
       }
   } while (swapped);
 
-
-  console.log("HELLO: " + colorArr);
+  console.log("Color Scores: " + colorArr);
+  console.log("Color Names: " + colorUser);
 
   // display the first 10
   if (scoreLength > 10) {
