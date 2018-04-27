@@ -1,12 +1,19 @@
 
-src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js";
+src = "https://www.gstatic.com/firebasejs/4.12.1/firebase.js";
 
 var database = firebase.database();
+
+// reference to color blind leaderboards
 var ref = database.ref('leaderboard');
+console.log("REF: " + ref);
 ref.on('value', obtainData, errorData);
 
+// reference to hearing test leaderboards
 var hearingRef = database.ref('hearingLeaderboard');
+console.log("HEARING REF: " + hearingRef);
 hearingRef.on('value', obtainHearingData, errorData);
+
+var userColorRef;
 
 /* -------------------------- LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
 
@@ -86,26 +93,39 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     var uid = firebase.auth().currentUser.uid;
     console.log("UID: " + uid);
 
+    // create reference to user's color blindness test score
+    userColorRef = database.ref('profile').child(uid);
+    console.log("USER COLOR REF: " + userColorRef);
+    // setting up routing to user's database for grabbing user's top color score
+    userColorRef.on('value', obtainUserProfile, errorData);
+
     var userEmail = firebase.auth().currentUser.email;
     console.log("EMAIL: " + userEmail);
+
+    // set user's email to user's database (for profile page)
+    userColorRef.update({email: userEmail});
+
+    // set user's default username in user's database (for profile page)
+    var username = userEmail;
+    username = username.split("@");
+    username = username[0];
+    userColorRef.update({username: username});
 
     // MAY NEED TO EDIT
     firebase.database().ref().child('users').child(uid).set({
       userId: uid,
       email: userEmail
     });
-
   }
   else {
     console.log("User is not logged in!");
   }
 });
 
-firebase.auth().onAuthStateChanged(user => {
-  if (user) { this.userId = user.uid }
-  console.log("USER ID: " + this.userId);
-});
-
+// firebase.auth().onAuthStateChanged(user => {
+//   if (user) { this.userId = user.uid }
+//   console.log("USER ID: " + this.userId);
+// });
 
 function profileRedirect() {
   window.location.replace("profile.html");
@@ -227,8 +247,8 @@ function nextQuestion(response) {
 
     console.log("Number of correct answers: " + correct);
 
-    // TODO: SET FINAL SCORE TO SOME MULTIPLE NUMBER (100?)
-    finalScore = correct;
+    // set final score based on correct number of answers
+    finalScore = Math.trunc(((correct / question.length) * 10000));
     var username = firebase.auth().currentUser.email;
     username = username.split("@");
     username = username[0];
@@ -239,9 +259,15 @@ function nextQuestion(response) {
       colorScore: finalScore
     }
 
-    ref.push(data);
+    var userProfileData = {
+      color: finalScore
+    }
 
-    document.getElementById("colorScore").innerHTML = finalScore + " / " + (question.length);
+    ref.push(data);
+    userColorRef.update(userProfileData);
+    //userColorRef.update({color: finalScore});
+
+    document.getElementById("colorScore").innerHTML = finalScore; // + " / " + (question.length);
 
     // make test sheet hidden
     var imgElement = document.getElementById("colorImg");
@@ -379,7 +405,7 @@ function nextSound(resp) {
 
     // set scores and username
     totalHearingScore = hearingCorrect;
-    var totalHearingScoreVal = Math.trunc(((totalHearingScore / sounds.length) * 1000));
+    var totalHearingScoreVal = Math.trunc(((totalHearingScore / sounds.length) * 10000));
 
     var username = firebase.auth().currentUser.email;
     username = username.split("@");
@@ -391,8 +417,10 @@ function nextSound(resp) {
       username: username,
       hearingScore: totalHearingScoreVal
     }
-
     hearingRef.push(hearingData);
+
+    // set hearing score in user's database
+    userColorRef.update({hearing: totalHearingScoreVal});
 
     leftEar = Math.trunc(((leftCorrect / (sounds.length / 2)) * 100));
     rightEar = Math.trunc(((rightCorrect / (sounds.length / 2)) * 100));
@@ -402,7 +430,7 @@ function nextSound(resp) {
     document.getElementById("rightHearingScore").innerHTML = rightEar + "%";
 
     console.log("LEFT: " + leftCorrect);
-    console.log("RIGHT: " + rightCorrect); 
+    console.log("RIGHT: " + rightCorrect);
 
 
     // make test sheet hidden
@@ -462,27 +490,27 @@ function obtainData(data) {
     var colorScore = score[k].colorScore;
     var name = score[k].username;
     console.log("COLOR: " + colorScore);
-    colorArr.push(score[k].colorScore); 
+    colorArr.push(score[k].colorScore);
     colorUser.push(score[k].username);
   }
 
   // sort by score
   var swapped;
   do {
-      swapped = false;
-      for (var i=0; i < colorArr.length-1; i++) {
-          if (colorArr[i] < colorArr[i+1]) {
-              var temp = colorArr[i];
-              colorArr[i] = colorArr[i+1];
-              colorArr[i+1] = temp;
+    swapped = false;
+    for (var i = 0; i < colorArr.length - 1; i++) {
+      if (colorArr[i] < colorArr[i + 1]) {
+        var temp = colorArr[i];
+        colorArr[i] = colorArr[i + 1];
+        colorArr[i + 1] = temp;
 
-              var temp2 = colorUser[i];
-              colorUser[i] = colorUser[i+1];
-              colorUser[i+1] = temp2;
+        var temp2 = colorUser[i];
+        colorUser[i] = colorUser[i + 1];
+        colorUser[i + 1] = temp2;
 
-              swapped = true;
-          }
+        swapped = true;
       }
+    }
   } while (swapped);
 
   console.log("Color Scores: " + colorArr);
@@ -495,9 +523,9 @@ function obtainData(data) {
 
   var list = "";
   for (var index = 0; index < scoreLength; index++) {
-   
+
     list += "<li>" + colorUser[index] + "  -  " + colorArr[index] + "</li>";
-   
+
   }
 
   var colorLeaderboardElement = document.getElementById("colorLeaderboard");
@@ -534,27 +562,27 @@ function obtainHearingData(hearingData) {
     var hearScore = soundScore[k].hearingScore;
     var name = soundScore[k].username;
     console.log("HEARING: " + hearScore);
-    hearingArr.push(soundScore[k].hearingScore); 
+    hearingArr.push(soundScore[k].hearingScore);
     hearingUser.push(soundScore[k].username);
   }
 
   // sort by score
   var swapped;
   do {
-      swapped = false;
-      for (var i=0; i < hearingArr.length-1; i++) {
-          if (hearingArr[i] < hearingArr[i+1]) {
-              var temp = hearingArr[i];
-              hearingArr[i] = hearingArr[i+1];
-              hearingArr[i+1] = temp;
+    swapped = false;
+    for (var i = 0; i < hearingArr.length - 1; i++) {
+      if (hearingArr[i] < hearingArr[i + 1]) {
+        var temp = hearingArr[i];
+        hearingArr[i] = hearingArr[i + 1];
+        hearingArr[i + 1] = temp;
 
-              var temp2 = hearingUser[i];
-              hearingUser[i] = hearingUser[i+1];
-              hearingUser[i+1] = temp2;
+        var temp2 = hearingUser[i];
+        hearingUser[i] = hearingUser[i + 1];
+        hearingUser[i + 1] = temp2;
 
-              swapped = true;
-          }
+        swapped = true;
       }
+    }
   } while (swapped);
 
   console.log("Hearing Scores: " + hearingArr);
@@ -567,9 +595,9 @@ function obtainHearingData(hearingData) {
 
   var list = "";
   for (var index = 0; index < scoreLength; index++) {
-   
+
     list += "<li>" + hearingUser[index] + "  -  " + hearingArr[index] + "</li>";
-   
+
   }
 
   var hearingLeaderboardElement = document.getElementById("hearingLeaderboard");
@@ -580,4 +608,28 @@ function obtainHearingData(hearingData) {
 }
 
 /* ------------------------ END HEARING LEADERBOARD DATABASE FUNCTIONS ------------------------ */
+
+
+  /* -------------------------------- PROFILE DATABASE FUNCTIONS -------------------------------- */
+
+function obtainUserProfile(userProfileData) {
+
+  console.log("Current email: " + userProfileData.val().email);
+  console.log("Current username: " + userProfileData.val().username);
+  console.log("Current color score: " + userProfileData.val().color);
+  console.log("Current hearing score: " + userProfileData.val().hearing);
+
+  var email = userProfileData.val().email;
+  var username = userProfileData.val().username;
+  var color = userProfileData.val().color;
+  var hearing = userProfileData.val().hearing;
+
+  var userEmailElement = document.getElementById("userEmailField");
+  if (userEmailElement != null) {
+    document.getElementById("userEmailField").innerHTML = email;
+  }
+
+
+}
+  /* ------------------------------ END PROFILE DATABASE FUNCTIONS ------------------------------ */
 

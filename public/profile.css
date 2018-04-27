@@ -1,10 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
 .textBody {
-    font-size: 20px;
+    font-size: 3vh;
     font-family: 'Work Sans', sans-serif;
     color: #333;
     font-weight: 300;
+    text-align: center;
+    background-color: #f8f6f0;
+}
+
+.textBodyLarge {
+    font-size: 3.5vh;
+    font-family: 'Work Sans', sans-serif;
+    color: #333;
+    font-weight: bold;
     text-align: center;
     background-color: #f8f6f0;
 }
