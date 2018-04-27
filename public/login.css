@@ -1,6 +1,6 @@
 .loginBox {
-    width: 570px;
-    height: 450px;
+    width: 30%;
+    height: 48%;
     background: rgba(0, 0, 0, 0.38);
     color: #fff;
     top: 50%;
@@ -84,4 +84,14 @@
     color: slategray;
     margin: auto;
     text-align: center;
+}
+
+#backGroundLogo {
+    background-image: url("./backgrounds/TwoSenseLogoV1.png");
+    background-repeat: no-repeat;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 8%;
 }
