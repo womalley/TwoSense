@@ -6,6 +6,8 @@ It also tests your eyesight for colorblindness by providing simple visual tests.
 
 Access our site with this link: https://womalley.github.io/TwoSense/
 
+View a demo video with this link: https://youtu.be/mwlls0MWZzg
+
 # Team Members
 * Siddhesh Patil - patil33@purdue.edu
 * William O'Malley - womalley@purdue.edu
