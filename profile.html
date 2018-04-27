@@ -23,20 +23,39 @@
 
     <!-- profile page content -->
     <div class="pageStyles">
-        <div class="textBody">
+        <div class="profileHeader">
             <h1 class="textProfile">My Profile</h1>
 
             <h1 class="textBodyLarge">Email</h1>
-            <h1 id="userEmailField" class="textBody"></h1>
+            <h1 id="userEmailField" class="textBodyHead"></h1>
 
             <h1 class="textBodyLarge">username</h1>
-            <h1 id="usernameField" class="textBody"></h1>
+            <h1 id="usernameField" class="textBodyHead"></h1>
 
-            <h2>Color Blindness Test Scores</h2>
-            <h4>There doesn't seem to be anything here. Take the Color Blindness Test to add to this list!</h4>
+            <div class="colorStats">
+                <h1 class="textBodyLarge">Color Blindness Test Scores</h1>
+                <div>
+                <h1 class="textBody">Last score: </h1>
+                <h1 id="lastColorField" class="textBodyVal"></h1>
+                </div>
 
-            <h2>Hearing Age Test Scores</h2>
-            <h4>There doesn't seem to be anything here. Take the Hearing Age Test to add to this list!</h4>
+                <div>
+                <h1 class="textBody">Highest score: </h1>
+                <h1 id="colorHighField" class="textBodyVal"></h1>
+                </div>
+            </div>
+
+            <div class="hearingStats">
+                <h1 class="textBodyLarge">Hearing Age Test Scores</h1>
+                <h1 class="textBody">Last score: </h1>
+                <h1 id="lastHearingField" class="textBodyVal"></h1>
+                <h1 class="textBody">Highest score: </h1>
+                <h1 id="hearingHighField" class="textBodyVal"></h1>
+                <h1 class="textBody">Left ear hearing quality: </h1>
+                <h1 id="leftEarField" class="textBodyVal"></h1>
+                <h1 class="textBody">Right ear hearing quality: </h1>
+                <h1 id="rightEarField" class="textBodyVal"></h1>
+            </div>
         </div>
     </div>
 

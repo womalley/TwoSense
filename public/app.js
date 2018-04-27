@@ -666,26 +666,45 @@ function obtainHearingData(hearingData) {
 
 function obtainUserProfile(userProfileData) {
 
+  // show stats in console log for testing
   console.log("Current email: " + userProfileData.val().email);
   console.log("Current username: " + userProfileData.val().username);
   console.log("Current color score: " + userProfileData.val().lastColor);
   console.log("Current hearing score: " + userProfileData.val().lastHearing);
+  console.log("Top color score: " + userProfileData.val().colorHigh);
+  console.log("Top hearing score: " + userProfileData.val().hearingHigh);
+  console.log("Top left ear score: " + userProfileData.val().leftEar);
+  console.log("top right ear score: " + userProfileData.val().rightEar);
 
+  // set all user database values to variables
   var email = userProfileData.val().email;
   var username = userProfileData.val().username;
   var color = userProfileData.val().lastColor;
   var hearing = userProfileData.val().lastHearing;
+  var colorHigh = userProfileData.val().colorHigh;
+  var hearingHigh = userProfileData.val().hearingHigh;
+  var leftEarHigh = userProfileData.val().leftEar;
+  var rightEarHigh = userProfileData.val().rightEar;
 
-  console.log("Color high: " + userProfileData.val().colorHigh);
-
-
+  // grab elements from profile page (to set user data to below)
   var userEmailElement = document.getElementById("userEmailField");
-  if (userEmailElement != null) {
+  var usernameElement = document.getElementById("usernameField");
+  var lastColorElement = document.getElementById("lastColorField");
+  var lastHearingElement = document.getElementById("lastHearingField");
+  var colorHighElement = document.getElementById("colorHighField");
+  var hearingHighElement = document.getElementById("hearingHighField");
+
+  // if on profile page, fill all elements with the user's data
+  if ((userEmailElement != null)) {
     document.getElementById("userEmailField").innerHTML = email;
     document.getElementById("usernameField").innerHTML = username;
-
+    document.getElementById("lastColorField").innerHTML = color;
+    document.getElementById("lastHearingField").innerHTML = hearing;
+    document.getElementById("colorHighField").innerHTML = colorHigh;
+    document.getElementById("hearingHighField").innerHTML = hearingHigh;
+    document.getElementById("leftEarField").innerHTML = (leftEarHigh + "%");
+    document.getElementById("rightEarField").innerHTML = (rightEarHigh + "%");
   }
-
 
 }
   /* ------------------------------ END PROFILE DATABASE FUNCTIONS ------------------------------ */
