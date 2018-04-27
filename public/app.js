@@ -346,7 +346,7 @@ if (finalTextHearingElement1 != null && hearingScoreElement != null && tryAgainH
 
   // set default volume level to 50%
   var audio = document.getElementById("soundFile");
-  audio.volume = 0.5;
+  audio.volume = 0.4;
 }
 
 var sounds = [
