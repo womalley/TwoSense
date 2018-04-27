@@ -184,28 +184,28 @@ if (finalTextElement != null && colorScoreElement != null && tryAgainButtonEleme
 const question = [
   ["./Tests/Colorblindness/1.png", 'none'],
   ["./Tests/Colorblindness/2.0.png", '2'],
-  ["./Tests/Colorblindness/2.1.png", '2'],
+  ["./Tests/Colorblindness/7.png", '7'],
+  ["./Tests/Colorblindness/9.png", '9'],
   ["./Tests/Colorblindness/3.1.png", '3'],
-  ["./Tests/Colorblindness/3.png", 'none'],
+  ["./Tests/Colorblindness/7.3.png", '7'],
+  ["./Tests/Colorblindness/3.png", '3'],
   ["./Tests/Colorblindness/4.png", '4'],
   ["./Tests/Colorblindness/5.0.png", '5'],
+  ["./Tests/Colorblindness/9.2.png", '9'],
   ["./Tests/Colorblindness/5.1.png", '5'],
+  ["./Tests/Colorblindness/2.1.png", '2'],
+  ["./Tests/Colorblindness/7.2.png", '7'],
+  ["./Tests/Colorblindness/9.1.png", '9'],
   ["./Tests/Colorblindness/5.2.png", '5'],
   ["./Tests/Colorblindness/5.png", '5'],
   ["./Tests/Colorblindness/6.1.png", '6'],
   ["./Tests/Colorblindness/6.png", '6'],
-  ["./Tests/Colorblindness/7.1.png", '7'],
-  ["./Tests/Colorblindness/7.2.png", '7'],
-  ["./Tests/Colorblindness/7.3.png", '7'],
-  ["./Tests/Colorblindness/7.png", '7'],
-  ["./Tests/Colorblindness/8.png", '8'],
-  ["./Tests/Colorblindness/9.1.png", '9'],
-  ["./Tests/Colorblindness/9.2.png", '9'],
   ["./Tests/Colorblindness/9.3.png", '9'],
-  ["./Tests/Colorblindness/9.png", '9']
+  ["./Tests/Colorblindness/7.1.png", '7'],
+  ["./Tests/Colorblindness/8.png", '8']
 ];
 
-var colorAnsKey = ['none', '2', '2', '3', 'none', '4', '5', '5', '5', '5', '6', '6', '7', '7', '7', '7', '8', '9', '9', '9', '9'];
+var colorAnsKey = ['none', '2', '7', '9', '3', '7', '3', '4', '5', '9', '5', '2', '7', '9', '5', '5', '6', '6', '9', '7', '8'];
 var colorAnsUser = [];
 var correct = 0;
 var finalScore;
