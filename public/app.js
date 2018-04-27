@@ -13,7 +13,7 @@ var hearingRef = database.ref('hearingLeaderboard');
 console.log("HEARING REF: " + hearingRef);
 hearingRef.on('value', obtainHearingData, errorData);
 
-var userColorRef;
+var userRef;
 
 /* -------------------------- LOGIN PAGE AND ROUTING FUNCTIONS -------------------------- */
 
@@ -83,6 +83,7 @@ function registerButtonCheck() {
 //   });
 // }
 
+
 // log user information
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
@@ -94,22 +95,22 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     console.log("UID: " + uid);
 
     // create reference to user's color blindness test score
-    userColorRef = database.ref('profile').child(uid);
-    console.log("USER COLOR REF: " + userColorRef);
+    userRef = database.ref('profile').child(uid);
+    console.log("USER COLOR REF: " + userRef);
     // setting up routing to user's database for grabbing user's top color score
-    userColorRef.on('value', obtainUserProfile, errorData);
+    userRef.on('value', obtainUserProfile, errorData);
 
     var userEmail = firebase.auth().currentUser.email;
     console.log("EMAIL: " + userEmail);
 
     // set user's email to user's database (for profile page)
-    userColorRef.update({email: userEmail});
+    userRef.update({email: userEmail});
 
     // set user's default username in user's database (for profile page)
     var username = userEmail;
     username = username.split("@");
     username = username[0];
-    userColorRef.update({username: username});
+    userRef.update({username: username});
 
     // MAY NEED TO EDIT
     firebase.database().ref().child('users').child(uid).set({
@@ -209,7 +210,7 @@ var colorAnsUser = [];
 var correct = 0;
 var finalScore;
 
-function nextQuestion(response) {
+function nextQuestion(response, userProfileData) {
 
   response = document.getElementById("userAnswerIn").value;
   console.log("User response: " + response);
@@ -259,13 +260,31 @@ function nextQuestion(response) {
       colorScore: finalScore
     }
 
-    var userProfileData = {
-      color: finalScore
-    }
-
     ref.push(data);
-    userColorRef.update(userProfileData);
-    //userColorRef.update({color: finalScore});
+    userRef.update({lastColor: finalScore});
+
+    var uid = firebase.auth().currentUser.uid;
+    console.log("USER ID: " + uid);
+    var colorCheckRef = database.ref('profile').child(uid);
+    console.log("CHECK: " + colorCheckRef);
+    colorCheckRef.on('value', obtainUserProfile, errorData);
+
+    // get a reference of the high score
+    var checkScore;
+    var colorCheck = database.ref("profile/" + uid + "/colorHigh");
+    colorCheck.on("value", function(snap) {
+      console.log(snap.val());
+      checkScore = snap.val();
+    }, function (errorObject) {
+      console.log("ERROR: " + errorObject.code);
+    });
+    
+    // check to see if high score for user should be updated
+    if ((checkScore < finalScore) || (checkScore == null)) {
+      console.log("New score is the new HIGH score!!!");
+      colorCheckRef.update({colorHigh: finalScore});
+    }
+   
 
     document.getElementById("colorScore").innerHTML = finalScore; // + " / " + (question.length);
 
@@ -419,8 +438,15 @@ function nextSound(resp) {
     }
     hearingRef.push(hearingData);
 
-    // set hearing score in user's database
-    userColorRef.update({hearing: totalHearingScoreVal});
+    // set last hearing score in user's database
+    userRef.update({lastHearing: totalHearingScoreVal});
+
+    // check to see if high score for user should be updated
+    // var hearingCheck = userProfileData.val().hearingHigh;
+
+    // if (hearingCheck < totalHearingScoreVal) {
+    //   userRef.update({hearingHigh: totalHearingScoreVal});
+    // }
 
     leftEar = Math.trunc(((leftCorrect / (sounds.length / 2)) * 100));
     rightEar = Math.trunc(((rightCorrect / (sounds.length / 2)) * 100));
@@ -616,17 +642,22 @@ function obtainUserProfile(userProfileData) {
 
   console.log("Current email: " + userProfileData.val().email);
   console.log("Current username: " + userProfileData.val().username);
-  console.log("Current color score: " + userProfileData.val().color);
-  console.log("Current hearing score: " + userProfileData.val().hearing);
+  console.log("Current color score: " + userProfileData.val().lastColor);
+  console.log("Current hearing score: " + userProfileData.val().lastHearing);
 
   var email = userProfileData.val().email;
   var username = userProfileData.val().username;
-  var color = userProfileData.val().color;
-  var hearing = userProfileData.val().hearing;
+  var color = userProfileData.val().lastColor;
+  var hearing = userProfileData.val().lastHearing;
+
+  console.log("Color high: " + userProfileData.val().colorHigh);
+
 
   var userEmailElement = document.getElementById("userEmailField");
   if (userEmailElement != null) {
     document.getElementById("userEmailField").innerHTML = email;
+    document.getElementById("usernameField").innerHTML = username;
+
   }
 
 
