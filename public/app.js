@@ -448,9 +448,35 @@ function nextSound(resp) {
     //   userRef.update({hearingHigh: totalHearingScoreVal});
     // }
 
+    var uid = firebase.auth().currentUser.uid;
+    console.log("USER ID: " + uid);
+    var hearingCheckRef = database.ref('profile').child(uid);
+    console.log("CHECK: " + hearingCheckRef);
+    hearingCheckRef.on('value', obtainUserProfile, errorData);
+
+    // get a reference of the high score
+    var checkScore;
+    var hearingCheck = database.ref("profile/" + uid + "/hearingHigh");
+    hearingCheck.on("value", function(snap) {
+      console.log(snap.val());
+      checkScore = snap.val();
+    }, function (errorObject) {
+      console.log("ERROR: " + errorObject.code);
+    });
+  
+    // set ear quality values
     leftEar = Math.trunc(((leftCorrect / (sounds.length / 2)) * 100));
     rightEar = Math.trunc(((rightCorrect / (sounds.length / 2)) * 100));
 
+    // check to see if high score for user should be updated
+    if ((checkScore < totalHearingScoreVal) || (checkScore == null)) {
+      console.log("New score is the new HIGH score!!!");
+      hearingCheckRef.update({hearingHigh: totalHearingScoreVal});
+      hearingCheckRef.update({leftEar: leftEar});
+      hearingCheckRef.update({rightEar: rightEar});
+    }
+
+    // print to html
     document.getElementById("hearingScore").innerHTML = totalHearingScoreVal; //totalHearingScore + " / " + (sounds.length);
     document.getElementById("leftHearingScore").innerHTML = leftEar + "%";
     document.getElementById("rightHearingScore").innerHTML = rightEar + "%";
